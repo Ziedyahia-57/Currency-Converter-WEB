@@ -27,20 +27,32 @@ window.onresize = function () {
   }
 };
 
-// Add active class to bottom nav based on visible section
 document.addEventListener("DOMContentLoaded", function () {
   const navLinks = document.querySelectorAll(".bottom-nav .nav-btn");
   const sections = document.querySelectorAll("section");
+  let isScrolling = false;
+  let lastScrollPosition = window.scrollY;
 
-  // Function to check which section is in view
+  // Get the computed scroll-margin-top value (in pixels)
+  function getScrollMargin(element) {
+    const style = window.getComputedStyle(element);
+    const scrollMargin = parseInt(style.scrollMarginTop) || 0;
+    return scrollMargin;
+  }
+
   function updateActiveNav() {
     let currentSection = "";
+    const scrollPosition = window.scrollY + window.innerHeight / 3;
 
     sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
+      const scrollMargin = getScrollMargin(section);
+      const sectionTop = section.offsetTop - scrollMargin;
       const sectionHeight = section.clientHeight;
 
-      if (window.scrollY >= sectionTop - sectionHeight / 3) {
+      if (
+        scrollPosition >= sectionTop &&
+        scrollPosition < sectionTop + sectionHeight
+      ) {
         currentSection = section.getAttribute("id");
       }
     });
@@ -53,17 +65,61 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // Run on initial load and scroll
-  window.addEventListener("scroll", updateActiveNav);
-  updateActiveNav();
-
-  // Also update when clicking nav links (for smooth scrolling)
+  // Smooth scroll for nav links
   navLinks.forEach((link) => {
     link.addEventListener("click", function (e) {
-      // Remove active class from all links
-      navLinks.forEach((navLink) => navLink.classList.remove("active"));
-      // Add active class to clicked link
-      this.classList.add("active");
+      e.preventDefault();
+      const targetId = this.getAttribute("href");
+      const targetSection = document.querySelector(targetId);
+
+      if (targetSection) {
+        isScrolling = true;
+        navLinks.forEach((navLink) => navLink.classList.remove("active"));
+        this.classList.add("active");
+
+        const scrollMargin = getScrollMargin(targetSection);
+        window.scrollTo({
+          top: targetSection.offsetTop - scrollMargin,
+          behavior: "smooth",
+        });
+
+        setTimeout(() => {
+          isScrolling = false;
+          updateActiveNav(); // Final position check after scroll
+        }, 1000);
+      }
     });
   });
+
+  // Throttled scroll event
+  function throttle(callback, limit) {
+    let wait = false;
+    return function () {
+      if (!wait) {
+        callback.apply(this, arguments);
+        wait = true;
+        setTimeout(() => {
+          wait = false;
+        }, limit);
+      }
+    };
+  }
+
+  window.addEventListener(
+    "scroll",
+    throttle(function () {
+      const currentScrollPosition = window.scrollY;
+
+      // Only update if not programmatically scrolling and user actually scrolled
+      if (
+        !isScrolling &&
+        Math.abs(currentScrollPosition - lastScrollPosition) > 5
+      ) {
+        updateActiveNav();
+      }
+      lastScrollPosition = currentScrollPosition;
+    }, 100)
+  );
+
+  updateActiveNav(); // Initial update
 });

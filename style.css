@@ -297,6 +297,7 @@ nav.top-nav {
   text-decoration: none;
   color: var(--primary-dark);
   filter: grayscale(100%);
+  transition: filter 0.3s ease;
 }
 .active {
   filter: grayscale(0%);
