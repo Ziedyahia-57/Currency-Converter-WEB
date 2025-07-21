@@ -313,7 +313,7 @@ nav.top-nav {
 /*HOME*/
 #home {
   position: relative;
-  scroll-margin: 76px;
+  scroll-margin: 110px;
 }
 img.shape {
   position: absolute;
