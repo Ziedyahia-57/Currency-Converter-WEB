@@ -324,7 +324,7 @@ img.shape {
   z-index: -1;
   transition: transform 0.3s ease;
   bottom: 20px;
-  right: 60px;
+  right: 30px;
 }
 .shape {
   position: absolute;
