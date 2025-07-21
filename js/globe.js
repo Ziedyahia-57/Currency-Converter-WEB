@@ -50,7 +50,7 @@ const loadSvgTexture = () => {
       texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
       resolve(texture);
     };
-    img.src = "img/map.svg";
+    img.src = "img/map-final.svg";
   });
 };
 
