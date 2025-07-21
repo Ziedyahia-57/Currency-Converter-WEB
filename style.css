@@ -176,6 +176,9 @@ a {
 }
 
 /*TOP NAVBAR*/
+#navbar {
+  transition: top 0.3s;
+}
 .logo {
   display: flex;
   align-items: center;
