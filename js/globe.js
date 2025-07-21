@@ -23,7 +23,7 @@ renderer.outputEncoding = THREE.sRGBEncoding;
 renderer.setSize(width, height);
 container.innerHTML = "";
 
-// Make canvas responsive - width 100%, height auto
+// Make canvas responsive
 const canvas = renderer.domElement;
 canvas.style.display = "block";
 canvas.style.width = "100%";
@@ -57,13 +57,13 @@ const loadSvgTexture = () => {
 // Main creation function
 loadSvgTexture()
   .then((texture) => {
-    // Create REVERSED gradient material with texture
+    // Create gradient material with texture
     const gradientMaterial = new THREE.ShaderMaterial({
       uniforms: {
-        outerColor: { value: new THREE.Color(0x00ae8b) }, // Teal
-        innerColor: { value: new THREE.Color(0x888888) }, // Gray inside
-        opacity: { value: 0.8 }, // 80% transparency for front side
-        backOpacity: { value: 0.2 }, // 20% transparency for back side
+        outerColor: { value: new THREE.Color(0x00ae8b) },
+        innerColor: { value: new THREE.Color(0x888888) },
+        opacity: { value: 0.8 },
+        backOpacity: { value: 0.2 },
         map: { value: texture },
       },
       vertexShader: `
@@ -103,7 +103,7 @@ loadSvgTexture()
       side: THREE.DoubleSide,
     });
 
-    // Create globe with initial -120 degree rotation
+    // Create globe with initial rotation
     const globe = new THREE.Mesh(
       new THREE.SphereGeometry(0.85, 128, 128),
       gradientMaterial
@@ -111,7 +111,7 @@ loadSvgTexture()
     globe.rotation.y = -120 * (Math.PI / 180);
     scene.add(globe);
 
-    // Rim glow (teal color)
+    // Rim glow
     const rimGlow = new THREE.Mesh(
       new THREE.SphereGeometry(0.86, 128, 128),
       new THREE.MeshBasicMaterial({
@@ -126,15 +126,19 @@ loadSvgTexture()
     // Lighting
     scene.add(new THREE.AmbientLight(0xffffff, 0.3));
 
-    // Controls
-    const controls = new THREE.OrbitControls(camera, renderer.domElement);
+    // Enhanced Controls with precise dragging
+    const controls = new THREE.OrbitControls(camera, canvas);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.04;
+    controls.dampingFactor = 0.05; // More responsive than 0.04
+    controls.rotateSpeed = 0.8; // Slightly slower than default for precision
     controls.autoRotate = true;
     controls.autoRotateSpeed = 1.0;
     controls.enableZoom = false;
     controls.minPolarAngle = Math.PI / 6;
     controls.maxPolarAngle = (Math.PI * 5) / 6;
+    controls.screenSpacePanning = false; // Better for globe rotation
+    controls.maxDistance = 1.75;
+    controls.minDistance = 1.75;
 
     // Animation loop
     const animate = () => {
@@ -148,31 +152,31 @@ loadSvgTexture()
     const resizeObserver = new ResizeObserver(() => {
       const newWidth = container.clientWidth;
       const newHeight = container.clientHeight;
-
-      // Update renderer
       renderer.setSize(newWidth, newHeight);
-
-      // Update camera
       camera.aspect = newWidth / newHeight;
       camera.updateProjectionMatrix();
     });
     resizeObserver.observe(container);
+
+    // Cursor interaction
+    canvas.style.cursor = "grab";
+
+    canvas.addEventListener("mousedown", () => {
+      canvas.style.cursor = "grabbing";
+      controls.autoRotate = false; // Stop auto-rotation when user interacts
+    });
+
+    canvas.addEventListener("mouseup", () => {
+      canvas.style.cursor = "grab";
+      controls.autoRotate = true; // Resume auto-rotation
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+      canvas.style.cursor = "grab";
+      controls.autoRotate = true; // Resume auto-rotation if mouse leaves
+    });
   })
   .catch((error) => {
     console.error("Error loading globe:", error);
     container.innerHTML = '<div class="error">Globe failed to load</div>';
   });
-
-const canvasZone = document.querySelector("Canvas");
-
-canvasZone.addEventListener("mousedown", () => {
-  canvasZone.style.cursor = "grabbing";
-});
-
-canvasZone.addEventListener("mouseup", () => {
-  canvasZone.style.cursor = "grab";
-});
-
-canvasZone.addEventListener("mouseleave", () => {
-  canvasZone.style.cursor = "grab";
-});
