@@ -129,8 +129,8 @@ loadSvgTexture()
     // Slower Controls Configuration
     const controls = new THREE.OrbitControls(camera, canvas);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.1; // Increased for slower deceleration
-    controls.rotateSpeed = 0.3; // Reduced from 0.8 for slower manual rotation
+    controls.dampingFactor = 0.05; // Increased for slower deceleration
+    controls.rotateSpeed = 0.4; // Reduced from 0.8 for slower manual rotation
     controls.autoRotate = true;
     controls.autoRotateSpeed = 0.5; // Reduced from 1.0 for slower auto-rotation
     controls.enableZoom = false;
