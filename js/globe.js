@@ -126,17 +126,17 @@ loadSvgTexture()
     // Lighting
     scene.add(new THREE.AmbientLight(0xffffff, 0.3));
 
-    // Enhanced Controls with precise dragging
+    // Slower Controls Configuration
     const controls = new THREE.OrbitControls(camera, canvas);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.05; // More responsive than 0.04
-    controls.rotateSpeed = 0.8; // Slightly slower than default for precision
+    controls.dampingFactor = 0.1; // Increased for slower deceleration
+    controls.rotateSpeed = 0.3; // Reduced from 0.8 for slower manual rotation
     controls.autoRotate = true;
-    controls.autoRotateSpeed = 1.0;
+    controls.autoRotateSpeed = 0.5; // Reduced from 1.0 for slower auto-rotation
     controls.enableZoom = false;
     controls.minPolarAngle = Math.PI / 6;
     controls.maxPolarAngle = (Math.PI * 5) / 6;
-    controls.screenSpacePanning = false; // Better for globe rotation
+    controls.screenSpacePanning = false;
     controls.maxDistance = 1.75;
     controls.minDistance = 1.75;
 
@@ -163,17 +163,17 @@ loadSvgTexture()
 
     canvas.addEventListener("mousedown", () => {
       canvas.style.cursor = "grabbing";
-      controls.autoRotate = false; // Stop auto-rotation when user interacts
+      controls.autoRotate = false;
     });
 
     canvas.addEventListener("mouseup", () => {
       canvas.style.cursor = "grab";
-      controls.autoRotate = true; // Resume auto-rotation
+      controls.autoRotate = true;
     });
 
     canvas.addEventListener("mouseleave", () => {
       canvas.style.cursor = "grab";
-      controls.autoRotate = true; // Resume auto-rotation if mouse leaves
+      controls.autoRotate = true;
     });
   })
   .catch((error) => {
