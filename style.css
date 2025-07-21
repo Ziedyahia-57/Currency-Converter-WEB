@@ -298,7 +298,7 @@ nav.top-nav {
   color: var(--primary-dark);
   filter: grayscale(100%);
 }
-#active {
+.active {
   filter: grayscale(0%);
 }
 .nav-btn img {
@@ -387,6 +387,7 @@ section#brands {
   flex-direction: column;
   gap: 24px;
   border-radius: 24px;
+  overflow: hidden;
 }
 
 .brands {
