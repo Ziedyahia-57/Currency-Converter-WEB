@@ -134,6 +134,7 @@ loadSvgTexture()
     controls.autoRotate = true;
     controls.autoRotateSpeed = 0.5; // Reduced from 1.0 for slower auto-rotation
     controls.enableZoom = false;
+    controls.enablePan = false;
     controls.minPolarAngle = Math.PI / 6;
     controls.maxPolarAngle = (Math.PI * 5) / 6;
     controls.screenSpacePanning = false;
