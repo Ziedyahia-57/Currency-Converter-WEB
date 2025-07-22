@@ -1,3 +1,36 @@
+:root[data-dark="true"] {
+  --primary: #00d4aa;
+  --primary-color: #00c3aa;
+  --primary-dark: #00a88b;
+  --dark-1: #ffffff;
+  --dark-2: #f4faf9;
+  --dark-3: #deedea;
+  --light-1: #17362d;
+  --light-2: #2d534b;
+  --light-3: #476b64;
+  --accent-1: #21242b;
+  --accent-2: #1b1f26;
+  --accent-3: #292d36;
+
+  --H1-mobile: 42px;
+  --H2-mobile: 35px;
+  --H3-mobile: 29px;
+  --H4-mobile: 24px;
+  --H5-mobile: 20px;
+  --H6-mobile: 17px;
+  --p-mobile: 14px;
+  --small-mobile: 12px;
+
+  --H1-pc: 61px;
+  --H2-pc: 49px;
+  --H3-pc: 39px;
+  --H4-pc: 31px;
+  --H5-pc: 25px;
+  --H6-pc: 20px;
+  --p-pc: 16px;
+  --small-pc: 13px;
+}
+
 :root {
   --primary: #00d4aa;
   --primary-color: #00c3aa;
@@ -69,12 +102,13 @@ p {
 }
 h1 {
   font-size: var(--H1-mobile);
-  color: var(--accent-2);
+  color: var(--dark-1);
   font-weight: normal;
   line-height: 116%;
   margin: 0;
   text-transform: capitalize;
 }
+
 h2 {
   font-size: var(--H2-mobile);
   text-transform: capitalize;
@@ -83,10 +117,12 @@ h2 {
   color: var(--dark-2);
   font-weight: normal;
 }
+
 h3 {
   font-size: var(--H3-mobile);
   text-transform: capitalize;
 }
+
 h4 {
   font-size: var(--H4-mobile);
   text-transform: capitalize;
@@ -94,6 +130,7 @@ h4 {
   color: var(--dark-2);
   font-weight: normal;
 }
+
 h5 {
   font-size: var(--H5-mobile);
   margin: 0;
@@ -678,6 +715,7 @@ section#cta {
   margin: 32px 0;
   scroll-margin-top: 76px;
 }
+
 section#cta h2 {
   color: var(--light-1);
 }
@@ -827,6 +865,7 @@ footer {
   width: 100%;
   background: var(--light-2);
 }
+
 footer .wrapper {
   padding: 24px 24px 76px 24px;
   width: -webkit-fill-available;
@@ -1047,7 +1086,7 @@ footer hr {
     text-align: left;
   }
   #features .card:hover {
-    background: rgba(56, 228, 199, 0.25);
+    background: rgba(0, 255, 212, 0.25);
   }
   #features .card-group {
     grid-template-columns: repeat(2, 1fr);
@@ -1119,4 +1158,57 @@ footer hr {
       "logo right"
       "contact right";
   }
+}
+
+body[data-dark="true"] {
+  background: var(--accent-1);
+}
+h1[data-dark="true"] {
+  color: var(--dark-1);
+}
+h2[data-dark="true"] {
+  color: var(--primary);
+}
+body[data-dark="true"] h4 {
+  color: var(--dark-1);
+}
+nav.top-nav[data-dark="true"] {
+  background: var(--accent-1);
+}
+body[data-dark="true"] .learn-more,
+body[data-dark="true"] .contact-btn {
+  background: var(--accent-2);
+}
+body[data-dark="true"] a.cta-btn {
+  color: var(--dark-1);
+}
+body[data-dark="true"] .learn-more:hover,
+body[data-dark="true"] .contact-btn:hover {
+  background: var(--light-1);
+}
+section#brands[data-dark="true"] {
+  background: var(--accent-3);
+}
+body[data-dark="true"] .legend {
+  background: var(--accent-2);
+  border-color: var(--accent-3);
+}
+body[data-dark="true"] .card:hover .icon {
+  background: var(--accent-1);
+}
+body[data-dark="true"] section#cta {
+  background: var(--light-1);
+}
+body[data-dark="true"] section#cta h2 {
+  color: var(--dark-1);
+}
+body[data-dark="true"] section#cta p,
+body[data-dark="true"] section#cta a {
+  color: var(--dark-2);
+}
+.question[data-dark="true"] {
+  background: var(--accent-3);
+}
+footer[data-dark="true"] {
+  background: var(--accent-2);
 }
