@@ -604,10 +604,6 @@ section#brands {
   background: rgba(56, 228, 199, 0.25);
 }
 
-.card p {
-  /* width: 270px; */
-}
-
 .card-grid {
   display: grid;
   position: relative;
@@ -639,6 +635,10 @@ section#brands {
 }
 .card:hover .icon {
   background: var(--light-1);
+}
+.card:hover img {
+  filter: brightness(1.5);
+  transition: fill 0.3s ease;
 }
 .icon img {
   height: 32px;
@@ -924,6 +924,7 @@ footer hr {
 .sources .availability {
   display: flex;
   align-items: anchor-center;
+  gap: 4px;
 }
 .sources .availability .checkmark {
   width: 10px;
@@ -1175,6 +1176,10 @@ body[data-dark="true"] h4 {
 nav.top-nav[data-dark="true"] {
   background: var(--accent-1);
 }
+body[data-dark="true"] nav.bottom-nav {
+  background: var(--accent-1);
+  border-color: var(--accent-3);
+}
 body[data-dark="true"] .learn-more,
 body[data-dark="true"] .contact-btn {
   background: var(--accent-2);
@@ -1187,11 +1192,17 @@ body[data-dark="true"] .contact-btn:hover {
   background: var(--light-1);
 }
 section#brands[data-dark="true"] {
-  background: var(--accent-3);
+  background: var(--accent-2);
 }
 body[data-dark="true"] .legend {
   background: var(--accent-2);
   border-color: var(--accent-3);
+}
+body[data-dark="true"] .card {
+  background: #2d313a4d;
+}
+body[data-dark="true"] .card:hover {
+  background: rgba(0, 255, 212, 0.25);
 }
 body[data-dark="true"] .card:hover .icon {
   background: var(--accent-1);
@@ -1208,6 +1219,7 @@ body[data-dark="true"] section#cta a {
 }
 .question[data-dark="true"] {
   background: var(--accent-3);
+  border-color: var(--dark-3);
 }
 footer[data-dark="true"] {
   background: var(--accent-2);
