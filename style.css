@@ -10,7 +10,7 @@
   --light-3: #476b64;
   --accent-1: #171d20;
   --accent-2: #1b2226;
-  --accent-3: #293236;
+  --accent-3: #1b2425;
 
   --H1-mobile: 42px;
   --H2-mobile: 35px;
@@ -322,6 +322,7 @@ nav.top-nav {
   border: 2px solid var(--light-3);
   box-sizing: border-box;
   z-index: 10;
+  border-bottom: none;
 }
 .bottom-nav ul {
   display: flex;
@@ -1219,7 +1220,10 @@ body[data-dark="true"] section#cta a {
 }
 .question[data-dark="true"] {
   background: var(--accent-3);
-  border-color: var(--dark-3);
+  border-color: var(--light-3);
+}
+.question[data-dark="true"][open] {
+  border-color: var(--primary-dark);
 }
 footer[data-dark="true"] {
   background: var(--accent-2);
