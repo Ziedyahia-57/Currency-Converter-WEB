@@ -1,82 +1,162 @@
-// List of selectors to apply dark mode to
-const darkModeSelectors = [
-  "body",
-  "h1",
-  "h2",
-  "h4",
-  "nav.top-nav",
-  "section#brands",
-  ".question",
-  "footer",
-];
+// Theme management system
+const ThemeManager = {
+  // List of selectors to apply dark mode to
+  darkModeSelectors: [
+    "body",
+    "h1",
+    "h2",
+    "h4",
+    "nav.top-nav",
+    "section#brands",
+    ".question",
+    "footer",
+  ],
 
-function updateShapeImages(shouldApply) {
-  // Get all shape images
-  const shapeImages = document.querySelectorAll('img[src*="Shape"]');
+  // Initialize the theme system
+  init() {
+    this.themeContainer = document.querySelector(".theme");
+    this.themeButtons = {
+      light: this.themeContainer.querySelector(".theme-btn.light"),
+      dark: this.themeContainer.querySelector(".theme-btn.dark"),
+      auto: this.themeContainer.querySelector(".theme-btn.auto"),
+    };
 
-  shapeImages.forEach((img) => {
-    const currentSrc = img.src;
+    this.setupEventListeners();
+    this.loadTheme();
+  },
 
-    if (img.classList.contains("white-icon")) {
-      // Handle white-icon special case
-      if (shouldApply) {
-        img.src = currentSrc.includes("Shape-light.png")
-          ? currentSrc.replace("Shape-light.png", "Shape-primary.png")
-          : currentSrc;
-      } else {
-        img.src = currentSrc.includes("Shape-primary.png")
-          ? currentSrc.replace("Shape-primary.png", "Shape-light.png")
-          : currentSrc;
-      }
+  // Set up event listeners
+  setupEventListeners() {
+    // Theme container click handler
+    this.themeContainer.addEventListener("click", () => this.cycleTheme());
+
+    // System preference changes
+    window
+      .matchMedia("(prefers-color-scheme: dark)")
+      .addEventListener("change", (e) => {
+        if (this.currentTheme === "auto") {
+          this.applyTheme(e.matches ? "dark" : "light");
+        }
+      });
+  },
+
+  // Cycle through themes
+  cycleTheme() {
+    const themes = ["light", "dark", "auto"];
+    const currentIndex = themes.indexOf(this.currentTheme);
+    const nextIndex = (currentIndex + 1) % themes.length;
+    this.setTheme(themes[nextIndex]);
+  },
+
+  // Load saved theme or use system preference
+  loadTheme() {
+    const savedTheme = localStorage.getItem("theme");
+    const systemPrefersDark = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    ).matches;
+
+    this.currentTheme = savedTheme || "auto"; // Default to auto if no preference saved
+
+    // Apply the theme
+    if (this.currentTheme === "auto") {
+      this.applyTheme(systemPrefersDark ? "dark" : "light");
     } else {
-      // Handle regular shape images
-      if (shouldApply) {
-        img.src = currentSrc.includes("Shape-light.png")
-          ? currentSrc.replace("Shape-light.png", "Shape-dark.png")
-          : currentSrc;
-      } else {
-        img.src = currentSrc.includes("Shape-dark.png")
-          ? currentSrc.replace("Shape-dark.png", "Shape-light.png")
-          : currentSrc;
-      }
+      this.applyTheme(this.currentTheme);
     }
-  });
-}
 
-function applyDarkMode(shouldApply) {
-  // Apply to root (<html>)
-  document.documentElement.setAttribute("data-dark", shouldApply);
+    this.updateThemeButtonVisibility();
+  },
 
-  // Apply to all other elements
-  darkModeSelectors.forEach((selector) => {
-    document.querySelectorAll(selector).forEach((el) => {
-      el.setAttribute("data-dark", shouldApply);
+  // Set and save the theme
+  setTheme(theme) {
+    this.currentTheme = theme;
+    localStorage.setItem("theme", theme);
+
+    if (theme === "auto") {
+      const systemPrefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+      this.applyTheme(systemPrefersDark ? "dark" : "light");
+    } else {
+      this.applyTheme(theme);
+    }
+
+    this.updateThemeButtonVisibility();
+  },
+
+  // Update which theme button is visible
+  updateThemeButtonVisibility() {
+    // Hide all buttons first
+    Object.values(this.themeButtons).forEach((btn) => {
+      btn.style.display = "none";
     });
-  });
 
-  // Update shape images
-  updateShapeImages(shouldApply);
+    // Show only the current theme button
+    if (this.themeButtons[this.currentTheme]) {
+      this.themeButtons[this.currentTheme].style.display = "block";
+    }
+  },
 
-  // Change app.png to app-dark.png in about section
-  const appImage = document.querySelector(".first.fade-in-left.delay-1 img");
-  if (appImage) {
-    appImage.src = shouldApply
-      ? appImage.src.replace("app.png", "app-dark.png")
-      : appImage.src.replace("app-dark.png", "app.png");
-  }
-}
+  // Apply the theme to the page
+  applyTheme(theme) {
+    const isDark = theme === "dark";
 
-function checkDarkModePreference() {
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  applyDarkMode(prefersDark);
-}
+    // Apply to root element
+    document.documentElement.setAttribute("data-dark", isDark);
 
-// Initial check
-document.addEventListener("DOMContentLoaded", checkDarkModePreference);
+    // Apply to all other elements
+    this.darkModeSelectors.forEach((selector) => {
+      document.querySelectorAll(selector).forEach((el) => {
+        el.setAttribute("data-dark", isDark);
+      });
+    });
 
-// Listen for changes
-window
-  .matchMedia("(prefers-color-scheme: dark)")
-  .addEventListener("change", (e) => {
-    applyDarkMode(e.matches);
-  });
+    // Update shape images
+    this.updateShapeImages(isDark);
+
+    //Update app image
+    const appImage = document.querySelector(".first.fade-in-left.delay-1 img");
+    if (appImage) {
+      appImage.src = isDark
+        ? appImage.src.replace("app.png", "app-dark.png")
+        : appImage.src.replace("app-dark.png", "app.png");
+    }
+  },
+
+  updateShapeImages(shouldApply) {
+    const shapeImages = document.querySelectorAll('img[src*="Shape"]');
+
+    shapeImages.forEach((img) => {
+      const currentSrc = img.src;
+
+      if (img.classList.contains("white-icon")) {
+        // Handle white-icon special case
+        if (shouldApply) {
+          img.src = currentSrc.includes("Shape-light.png")
+            ? currentSrc.replace("Shape-light.png", "Shape-primary.png")
+            : currentSrc;
+        } else {
+          img.src = currentSrc.includes("Shape-primary.png")
+            ? currentSrc.replace("Shape-primary.png", "Shape-light.png")
+            : currentSrc;
+        }
+      } else {
+        // Handle regular shape images
+        if (shouldApply) {
+          img.src = currentSrc.includes("Shape-light.png")
+            ? currentSrc.replace("Shape-light.png", "Shape-dark.png")
+            : currentSrc;
+        } else {
+          img.src = currentSrc.includes("Shape-dark.png")
+            ? currentSrc.replace("Shape-dark.png", "Shape-light.png")
+            : currentSrc;
+        }
+      }
+    });
+  },
+};
+
+// Initialize when DOM is loaded
+document.addEventListener("DOMContentLoaded", () => {
+  ThemeManager.init();
+});
