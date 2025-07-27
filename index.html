@@ -22,50 +22,10 @@
           (window.vaq = window.vaq || []).push(arguments);
         };
     </script>
-    <script
-      src="https://web-currency-converter.vercel.app/_vercel/speed-insights/script.js"
-      defer></script>
-    <script src="js/darkMode.js" defer></script>
+    <script src="https://web-currency-converter.vercel.app/_vercel/speed-insights/script.js"></script>
+    <script src="js/darkMode.js"></script>
   </head>
   <body>
-    <!-- Lazy loading handler -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Handle lazy loading images
-        const lazyImages = [].slice.call(
-          document.querySelectorAll('img[loading="lazy"]')
-        );
-
-        if ("IntersectionObserver" in window) {
-          let lazyImageObserver = new IntersectionObserver(function (
-            entries,
-            observer
-          ) {
-            entries.forEach(function (entry) {
-              if (entry.isIntersecting) {
-                let lazyImage = entry.target;
-                lazyImage.src = lazyImage.dataset.src || lazyImage.src;
-                lazyImage.classList.add("loaded");
-                lazyImageObserver.unobserve(lazyImage);
-              }
-            });
-          });
-
-          lazyImages.forEach(function (lazyImage) {
-            lazyImageObserver.observe(lazyImage);
-          });
-        }
-      });
-    </script>
-    <style>
-      [loading="lazy"] {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      [loading="lazy"].loaded {
-        opacity: 1;
-      }
-    </style>
     <!-- LAPTOP + DESKTOP NAVIGATION-->
     <nav class="top-nav fade-in-down" id="navbar">
       <ul>
@@ -201,37 +161,33 @@
       <ul>
         <li>
           <p>
-            <a href="#home" class="nav-btn"
-              ><img loading="lazy" src="img/home.svg" />Home</a
-            >
+            <a href="#home" class="nav-btn"><img src="img/home.svg" />Home</a>
           </p>
         </li>
         <li>
           <p>
             <a href="#about" class="nav-btn"
-              ><img loading="lazy" src="img/about.svg" />About</a
+              ><img src="img/about.svg" />About</a
             >
           </p>
         </li>
         <li>
           <p>
             <a href="#coverage" class="nav-btn"
-              ><img loading="lazy" src="img/coverage.svg" />Coverage</a
+              ><img src="img/coverage.svg" />Coverage</a
             >
           </p>
         </li>
         <li>
           <p>
             <a href="#features" class="nav-btn"
-              ><img loading="lazy" src="img/features.svg" />Features</a
+              ><img src="img/features.svg" />Features</a
             >
           </p>
         </li>
         <li>
           <p>
-            <a href="#faq" class="nav-btn"
-              ><img loading="lazy" src="img/faq.svg" />FAQ</a
-            >
+            <a href="#faq" class="nav-btn"><img src="img/faq.svg" />FAQ</a>
           </p>
         </li>
       </ul>
@@ -257,15 +213,11 @@
 
             <small>No sign-up required.</small>
           </div>
-          <img loading="lazy" src="img/Shape-light.png" class="shape" />
+          <img src="img/Shape-light.png" class="shape" />
           <div class="second fade-in-up delay-1"></div>
-          <script
-            src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"
-            defer></script>
-          <script
-            src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"
-            defer></script>
-          <script src="js/globe.js" defer></script>
+          <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"></script>
+          <script src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"></script>
+          <script src="js/globe.js"></script>
         </section>
 
         <section id="brands" class="fade-in-up">
@@ -273,29 +225,26 @@
           <div class="logo-carousel">
             <div class="logo-track">
               <!-- Original Set -->
-              <img loading="lazy" src="/img/brand 1.svg" class="brand-logo" />
-              <img loading="lazy" src="/img/brand 2.svg" class="brand-logo" />
-              <img loading="lazy" src="/img/brand 3.svg" class="brand-logo" />
-              <img loading="lazy" src="/img/brand 4.svg" class="brand-logo" />
-              <img loading="lazy" src="/img/brand 5.svg" class="brand-logo" />
-              <img loading="lazy" src="/img/brand 6.svg" class="brand-logo" />
+              <img src="/img/brand 1.svg" class="brand-logo" />
+              <img src="/img/brand 2.svg" class="brand-logo" />
+              <img src="/img/brand 3.svg" class="brand-logo" />
+              <img src="/img/brand 4.svg" class="brand-logo" />
+              <img src="/img/brand 5.svg" class="brand-logo" />
+              <img src="/img/brand 6.svg" class="brand-logo" />
 
               <!-- Duplicated Set (for seamless looping) -->
-              <img loading="lazy" src="/img/brand 1.svg" class="brand-logo" />
-              <img loading="lazy" src="/img/brand 2.svg" class="brand-logo" />
-              <img loading="lazy" src="/img/brand 3.svg" class="brand-logo" />
-              <img loading="lazy" src="/img/brand 4.svg" class="brand-logo" />
-              <img loading="lazy" src="/img/brand 5.svg" class="brand-logo" />
-              <img loading="lazy" src="/img/brand 6.svg" class="brand-logo" />
+              <img src="/img/brand 1.svg" class="brand-logo" />
+              <img src="/img/brand 2.svg" class="brand-logo" />
+              <img src="/img/brand 3.svg" class="brand-logo" />
+              <img src="/img/brand 4.svg" class="brand-logo" />
+              <img src="/img/brand 5.svg" class="brand-logo" />
+              <img src="/img/brand 6.svg" class="brand-logo" />
             </div>
           </div>
         </section>
         <section id="about">
           <div class="first fade-in-left delay-1">
-            <img
-              loading="lazy"
-              src="img/app.png"
-              alt="Currency Converter Interface" />
+            <img src="img/app.png" alt="Currency Converter Interface" />
           </div>
           <div class="second fade-in-right delay-2">
             <h2>
@@ -319,7 +268,7 @@
             currencies, our extension handles it all with precision.
           </p>
           <div class="map fade-in-up delay-1">
-            <img loading="lazy" src="img/Colored map.svg" />
+            <img src="img/Colored map.svg" />
           </div>
           <div class="legend">
             <div class="row">
@@ -341,7 +290,7 @@
         </section>
         <section id="features">
           <div class="first fade-in-left">
-            <img loading="lazy" src="img/icon outline 3.png" class="outline" />
+            <img src="img/icon outline 3.png" class="outline" />
             <h2>Everything you need. Nothing you don’t.</h2>
             <p>
               Designed to make your online shopping and browsing effortless.
@@ -353,16 +302,12 @@
               <!-- Page 1 -->
               <div class="card-group active" data-page="1">
                 <div class="card">
-                  <div class="icon">
-                    <img loading="lazy" src="img/sparkle.svg" />
-                  </div>
+                  <div class="icon"><img src="img/sparkle.svg" /></div>
                   <h4>Smart Detection</h4>
                   <p>Select any price and get a live, accurate conversion.</p>
                 </div>
                 <div class="card">
-                  <div class="icon">
-                    <img loading="lazy" src="img/time.svg" />
-                  </div>
+                  <div class="icon"><img src="img/time.svg" /></div>
                   <h4>Live Exchange Rates</h4>
                   <p>
                     Stay up to date with accurate exchange rates. Prices update
@@ -370,16 +315,12 @@
                   </p>
                 </div>
                 <div class="card">
-                  <div class="icon">
-                    <img loading="lazy" src="img/globe.svg" />
-                  </div>
+                  <div class="icon"><img src="img/globe.svg" /></div>
                   <h4>150+ Currencies</h4>
                   <p>Convert prices from virtually any global currency.</p>
                 </div>
                 <div class="card">
-                  <div class="icon">
-                    <img loading="lazy" src="img/lock.svg" />
-                  </div>
+                  <div class="icon"><img src="img/lock.svg" /></div>
                   <h4>Privacy First</h4>
                   <p>
                     Your data stays on your device. No tracking, no accounts, no
@@ -388,18 +329,14 @@
                 </div>
 
                 <div class="card" id="hide-pc-flex">
-                  <div class="icon">
-                    <img loading="lazy" src="img/opensource.svg" />
-                  </div>
+                  <div class="icon"><img src="img/opensource.svg" /></div>
                   <h4>Open-Source</h4>
                   <p>
                     The code is publicly available, offering full transparency.
                   </p>
                 </div>
                 <div class="card" id="hide-pc-flex">
-                  <div class="icon">
-                    <img loading="lazy" src="img/custom.svg" />
-                  </div>
+                  <div class="icon"><img src="img/custom.svg" /></div>
                   <h4>Precision Control</h4>
                   <p>
                     Customize number format, date/time display, decimal
@@ -407,18 +344,14 @@
                   </p>
                 </div>
                 <div class="card" id="hide-pc-flex">
-                  <div class="icon">
-                    <img loading="lazy" src="img/bulk.svg" />
-                  </div>
+                  <div class="icon"><img src="img/bulk.svg" /></div>
                   <h4>Bulk Conversion</h4>
                   <p>
                     Convert one currency into multiple currencies all at once.
                   </p>
                 </div>
                 <div class="card" id="hide-pc-flex">
-                  <div class="icon">
-                    <img loading="lazy" src="img/tax.svg" />
-                  </div>
+                  <div class="icon"><img src="img/tax.svg" /></div>
                   <h4>Tax Calculation</h4>
                   <p>
                     Optionally include tax rates for accurate financial
@@ -426,18 +359,14 @@
                   </p>
                 </div>
                 <div class="card" id="hide-pc-flex">
-                  <div class="icon">
-                    <img loading="lazy" src="img/offline.svg" />
-                  </div>
+                  <div class="icon"><img src="img/offline.svg" /></div>
                   <h4>Offline Support</h4>
                   <p>
                     Cached exchange rates keep conversions available anytime.
                   </p>
                 </div>
                 <div class="card" id="hide-pc-flex">
-                  <div class="icon">
-                    <img loading="lazy" src="img/access.svg" />
-                  </div>
+                  <div class="icon"><img src="img/access.svg" /></div>
                   <h4>Keyboard-Friendly</h4>
                   <p>
                     Navigate the extension effortlessly using just your
@@ -446,10 +375,7 @@
                 </div>
                 <div class="card" id="hide-pc-flex">
                   <div class="icon">
-                    <img
-                      loading="lazy"
-                      src="img/dark.svg"
-                      style="transform: scaleX(-1)" />
+                    <img src="img/dark.svg" style="transform: scaleX(-1)" />
                   </div>
                   <h4>Dark Mode</h4>
                   <p>
@@ -462,18 +388,14 @@
               <!-- Page 2 -->
               <div class="card-group" data-page="2">
                 <div class="card">
-                  <div class="icon">
-                    <img loading="lazy" src="img/opensource.svg" />
-                  </div>
+                  <div class="icon"><img src="img/opensource.svg" /></div>
                   <h4>Open-Source</h4>
                   <p>
                     The code is publicly available, offering full transparency.
                   </p>
                 </div>
                 <div class="card">
-                  <div class="icon">
-                    <img loading="lazy" src="img/custom.svg" />
-                  </div>
+                  <div class="icon"><img src="img/custom.svg" /></div>
                   <h4>Precision Control</h4>
                   <p>
                     Customize number format, date/time display, decimal
@@ -481,18 +403,14 @@
                   </p>
                 </div>
                 <div class="card">
-                  <div class="icon">
-                    <img loading="lazy" src="img/bulk.svg" />
-                  </div>
+                  <div class="icon"><img src="img/bulk.svg" /></div>
                   <h4>Bulk Conversion</h4>
                   <p>
                     Convert one currency into multiple currencies all at once.
                   </p>
                 </div>
                 <div class="card">
-                  <div class="icon">
-                    <img loading="lazy" src="img/tax.svg" />
-                  </div>
+                  <div class="icon"><img src="img/tax.svg" /></div>
                   <h4>Tax Calculation</h4>
                   <p>
                     Optionally include tax rates for accurate financial
@@ -504,18 +422,14 @@
               <!-- Page 3 -->
               <div class="card-group" data-page="3">
                 <div class="card">
-                  <div class="icon">
-                    <img loading="lazy" src="img/offline.svg" />
-                  </div>
+                  <div class="icon"><img src="img/offline.svg" /></div>
                   <h4>Offline Support</h4>
                   <p>
                     Cached exchange rates keep conversions available anytime.
                   </p>
                 </div>
                 <div class="card">
-                  <div class="icon">
-                    <img loading="lazy" src="img/access.svg" />
-                  </div>
+                  <div class="icon"><img src="img/access.svg" /></div>
                   <h4>Keyboard-Friendly</h4>
                   <p>
                     Navigate the extension effortlessly using just your
@@ -524,10 +438,7 @@
                 </div>
                 <div class="card">
                   <div class="icon">
-                    <img
-                      loading="lazy"
-                      src="img/dark.svg"
-                      style="transform: scaleX(-1)" />
+                    <img src="img/dark.svg" style="transform: scaleX(-1)" />
                   </div>
                   <h4>Dark Mode</h4>
                   <p>
@@ -575,22 +486,10 @@
 
       <section id="cta">
         <div class="content">
-          <img
-            loading="lazy"
-            src="img/Shape-light.png"
-            class="white-icon top-left" />
-          <img
-            loading="lazy"
-            src="img/Shape-light.png"
-            class="white-icon top-right" />
-          <img
-            loading="lazy"
-            src="img/Shape-light.png"
-            class="white-icon bottom-left" />
-          <img
-            loading="lazy"
-            src="img/Shape-light.png"
-            class="white-icon bottom-right" />
+          <img src="img/Shape-light.png" class="white-icon top-left" />
+          <img src="img/Shape-light.png" class="white-icon top-right" />
+          <img src="img/Shape-light.png" class="white-icon bottom-left" />
+          <img src="img/Shape-light.png" class="white-icon bottom-right" />
           <h2 class="fade-in-up">
             Know the Price.<br />Right Where You See It.
           </h2>
@@ -781,7 +680,7 @@
           <hr />
           <div class="sources">
             <div class="availability">
-              <img loading="lazy" src="img/checkmark.svg" class="checkmark" />
+              <img src="img/checkmark.svg" class="checkmark" />
               <h6>Available on:</h6>
             </div>
             <div class="source-links">
@@ -790,19 +689,19 @@
                   href="https://github.com/Ziedyahia-57/Currency-Converter"
                   class="source-btn"
                   title="Github"
-                  ><img loading="lazy" src="img/github.svg" />Github</a
+                  ><img src="img/github.svg" />Github</a
                 >
                 <a href="#" class="source-btn disabled" title="Available Soon"
-                  ><img loading="lazy" src="img/firefox.svg" />Mozilla</a
+                  ><img src="img/firefox.svg" />Mozilla</a
                 >
               </div>
 
               <div class="group">
                 <a href="#" class="source-btn disabled" title="Available Soon"
-                  ><img loading="lazy" src="img/chrome.svg" />Chrome</a
+                  ><img src="img/chrome.svg" />Chrome</a
                 >
                 <a href="#" class="source-btn disabled" title="Available Soon"
-                  ><img loading="lazy" src="img/safari.svg" />Safari</a
+                  ><img src="img/safari.svg" />Safari</a
                 >
               </div>
             </div>
@@ -811,8 +710,8 @@
       </footer>
     </main>
   </body>
-  <script src="js/marquee.js" defer></script>
-  <script src="js/animations.js" defer></script>
-  <script src="js/pagination.js" defer></script>
-  <script src="js/navbar.js" defer></script>
+  <script src="js/marquee.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/pagination.js"></script>
+  <script src="js/navbar.js"></script>
 </html>
