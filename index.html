@@ -3,390 +3,18 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Convert prices instantly while you browse with our currency converter extension" />
-    <title>Currency Converter - Instant Conversion While You Browse</title>
-
-    <!-- Preload and optimize critical resources -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preload" href="style.css" as="style" />
-    <link rel="preload" href="img/app.png" as="image" />
-    <link rel="preload" href="img/Shape-light.png" as="image" />
-
-    <!-- Inline critical CSS -->
-    <style>
-      body {
-        margin: 0;
-        font-family: "Lato", sans-serif;
-        overflow-x: hidden;
-      }
-      .fade-in-up {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      #navbar {
-        position: fixed;
-        top: 0;
-        width: 100%;
-        z-index: 100;
-        background: white;
-      }
-      img {
-        max-width: 100%;
-        height: auto;
-      }
-      .hidden {
-        display: none !important;
-      }
-      [loading="lazy"] {
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      [loading="lazy"].loaded {
-        opacity: 1;
-      }
-    </style>
-
-    <!-- Non-critical CSS -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
-      rel="stylesheet"
-      media="print"
-      onload="this.media='all'" />
-    <link
-      rel="stylesheet"
-      href="style.css"
-      media="print"
-      onload="this.media='all'" />
-
-    <!-- Favicon -->
+      href="https://fonts.googleapis.com/css2?family=Lato&amp;display=swap"
+      rel="stylesheet" />
+    <title>Currency Converter</title>
+    <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="img/icon.ico" type="image/x-icon" />
-
-    <!-- SVG Sprite -->
     <svg style="display: none" xmlns="http://www.w3.org/2000/svg">
       <symbol id="arrow-icon" viewBox="0 0 96 96">
         <path
           d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
       </symbol>
-      <symbol id="theme-light" viewBox="0 0 16 16">
-        <path
-          d="M8.00002 1.43164V2.76497M8.00002 14.765V16.0983M2.81335 3.57831L3.76002 4.52497M12.24 13.005L13.1867 13.9516M0.666687 8.76497H2.00002M14 8.76497H15.3334M2.81335 13.9516L3.76002 13.005M12.24 4.52497L13.1867 3.57831M11.3334 8.76497C11.3334 10.6059 9.84097 12.0983 8.00002 12.0983C6.15907 12.0983 4.66669 10.6059 4.66669 8.76497C4.66669 6.92402 6.15907 5.43164 8.00002 5.43164C9.84097 5.43164 11.3334 6.92402 11.3334 8.76497Z"
-          stroke="#476B64"
-          stroke-linecap="round"
-          stroke-linejoin="round" />
-      </symbol>
-      <symbol id="theme-dark" viewBox="0 0 14 14">
-        <path
-          d="M13 7.2918C12.8951 8.42661 12.4692 9.50807 11.7722 10.4097C11.0751 11.3113 10.1357 11.9957 9.0638 12.3828C7.99194 12.77 6.83199 12.8439 5.71966 12.5959C4.60734 12.3478 3.58866 11.7882 2.78281 10.9823C1.97697 10.1765 1.41729 9.15779 1.16927 8.04547C0.921246 6.93315 0.995139 5.77319 1.3823 4.70133C1.76946 3.62948 2.45388 2.69005 3.35547 1.99297C4.25706 1.2959 5.33853 0.870007 6.47333 0.765137C5.80894 1.66398 5.48923 2.77144 5.57235 3.88608C5.65547 5.00072 6.1359 6.04851 6.92626 6.83887C7.71662 7.62923 8.76441 8.10966 9.87905 8.19278C10.9937 8.2759 12.1012 7.9562 13 7.2918Z"
-          stroke="#476B64"
-          stroke-linecap="round"
-          stroke-linejoin="round" />
-      </symbol>
-      <!-- Add other SVG icons here -->
     </svg>
-  </head>
-  <body>
-    <!-- LAPTOP + DESKTOP NAVIGATION-->
-    <nav class="top-nav fade-in-down" id="navbar">
-      <ul>
-        <li>
-          <a href="#home" class="logo">
-            <svg
-              width="35"
-              height="41"
-              viewBox="0 0 35 41"
-              fill="none"
-              class="dark-mode">
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M21.4656 0.917824L32.1126 3.48542C34.1325 3.96471 35.3991 6.01878 34.8856 8.03863L29.3054 31.3182C28.8261 33.338 26.8062 34.6047 24.7864 34.1254L19.1719 32.756L18.0764 37.275C17.5971 39.2948 15.5773 40.5615 13.5574 40.0822L2.91048 37.5146C0.856398 37.0354 -0.376049 34.9813 0.103236 32.9614L5.68348 9.68189C6.16276 7.66205 8.21684 6.39536 10.2367 6.87465L15.8512 8.24403L16.9124 3.72506C17.3917 1.70522 19.4458 0.43854 21.4656 0.917824ZM19.1719 32.756L19.8566 29.983C19.8794 29.9146 19.8908 29.8461 19.8908 29.7776L23.8278 13.3108C24.2386 11.6333 23.2116 9.99 21.5683 9.57918L18.8296 8.92873C18.7839 8.92873 18.7497 8.91731 18.7269 8.89449L15.8512 8.2098L15.2007 10.8801C15.2007 10.9029 15.2007 10.9143 15.2007 10.9143C15.1551 11.0056 15.1208 11.1083 15.098 11.2224L11.161 27.6893C10.7844 29.3326 11.8115 31.0101 13.4547 31.3866L16.1935 32.0371L19.1719 32.756Z"
-                fill="url(#paint0_linear_81_210)" />
-              <defs>
-                <linearGradient
-                  id="paint0_linear_81_210"
-                  x1="6.10148"
-                  y1="33.8341"
-                  x2="35.8196"
-                  y2="1.09416"
-                  gradientUnits="userSpaceOnUse">
-                  <stop stop-color="#245547"></stop>
-                  <stop offset="1" stop-color="#00D4AA"></stop>
-                </linearGradient>
-              </defs>
-            </svg>
-            <p>Currency<br />Converter</p>
-          </a>
-        </li>
-        <li id="hide-phone">
-          <div class="nav-links">
-            <p><a href="#home">Home</a></p>
-            <p><a href="#about">About</a></p>
-            <p><a href="#coverage">Coverage</a></p>
-            <p><a href="#features">Features</a></p>
-            <p><a href="#faq">FAQ</a></p>
-            <p><a href="#contact">Contact</a></p>
-          </div>
-        </li>
-        <li>
-          <div class="buttons">
-            <div class="theme">
-              <svg
-                style="display: none"
-                title="System Default"
-                class="theme-btn auto"
-                width="16"
-                height="16"
-                viewBox="0 0 16 17"
-                fill="none"
-                class="dark-mode">
-                <path
-                  d="M8.00002 10.765C9.10459 10.765 10 9.86954 10 8.76497C10 7.6604 9.10459 6.76497 8.00002 6.76497C6.89545 6.76497 6.00002 7.6604 6.00002 8.76497C6.00002 9.86954 6.89545 10.765 8.00002 10.765Z"
-                  stroke="#476B64"
-                  stroke-linecap="round"
-                  stroke-linejoin="round" />
-                <path
-                  d="M12.9334 10.765C12.8446 10.9661 12.8181 11.1891 12.8573 11.4054C12.8966 11.6216 12.9997 11.8212 13.1534 11.9783L13.1934 12.0183C13.3173 12.1421 13.4157 12.2892 13.4828 12.4511C13.5499 12.6129 13.5844 12.7864 13.5844 12.9616C13.5844 13.1369 13.5499 13.3104 13.4828 13.4722C13.4157 13.6341 13.3173 13.7811 13.1934 13.905C13.0695 14.0289 12.9225 14.1273 12.7606 14.1944C12.5987 14.2615 12.4252 14.296 12.25 14.296C12.0748 14.296 11.9013 14.2615 11.7394 14.1944C11.5776 14.1273 11.4305 14.0289 11.3067 13.905L11.2667 13.865C11.1096 13.7113 10.91 13.6082 10.6937 13.569C10.4775 13.5298 10.2544 13.5562 10.0534 13.645C9.85617 13.7295 9.68801 13.8698 9.56956 14.0487C9.45111 14.2275 9.38754 14.4371 9.38669 14.6516V14.765C9.38669 15.1186 9.24621 15.4577 8.99616 15.7078C8.74611 15.9578 8.40698 16.0983 8.05335 16.0983C7.69973 16.0983 7.36059 15.9578 7.11054 15.7078C6.8605 15.4577 6.72002 15.1186 6.72002 15.1186V14.765V14.705C6.71486 14.4843 6.64343 14.2703 6.51503 14.0908C6.38662 13.9112 6.20718 13.7745 6.00002 13.6983C5.79894 13.6096 5.57589 13.5831 5.35963 13.6223C5.14336 13.6615 4.94381 13.7646 4.78669 13.9183L4.74669 13.9583C4.62286 14.0823 4.4758 14.1806 4.31394 14.2477C4.15208 14.3148 3.97857 14.3494 3.80335 14.3494C3.62813 14.3494 3.45463 14.3148 3.29277 14.2477C3.1309 14.1806 2.98385 14.0823 2.86002 13.9583C2.73605 13.8345 2.63771 13.6874 2.57061 13.5256C2.50351 13.3637 2.46897 13.1902 2.46897 13.015C2.46897 12.8398 2.50351 12.6663 2.57061 12.5044C2.63771 12.3425 2.73605 12.1955 2.86002 12.0716L2.90002 12.0316C3.05371 11.8745 3.15681 11.675 3.19602 11.4587C3.23524 11.2424 3.20876 11.0194 3.12002 10.8183C3.03551 10.6211 2.89519 10.453 2.71633 10.3345C2.53747 10.2161 2.32788 10.1525 2.11335 10.1516H2.00002C1.6464 10.1516 1.30726 10.0112 1.05721 9.76112C0.807163 9.51107 0.666687 9.17193 0.666687 8.81831C0.666687 8.46468 0.807163 8.12555 1.05721 7.8755C1.30726 7.62545 1.6464 7.48497 2.00002 7.48497H2.06002C2.28068 7.47981 2.49469 7.40839 2.67422 7.27998C2.85375 7.15158 2.9905 6.97213 3.06669 6.76497C3.15543 6.5639 3.1819 6.34084 3.14269 6.12458C3.10348 5.90832 3.00038 5.70876 2.84669 5.55164L2.80669 5.51164C2.68272 5.38781 2.58437 5.24076 2.51727 5.07889C2.45017 4.91703 2.41564 4.74353 2.41564 4.56831C2.41564 4.39309 2.45017 4.21958 2.51727 4.05772C2.58437 3.89586 2.68272 3.7488 2.80669 3.62497C2.93052 3.50101 3.07757 3.40266 3.23943 3.33556C3.4013 3.26846 3.5748 3.23392 3.75002 3.23392C3.92524 3.23392 4.09874 3.26846 4.26061 3.33556C4.42247 3.40266 4.56952 3.50101 4.69335 3.62497L4.73335 3.66497C4.89047 3.81866 5.09003 3.92176 5.30629 3.96098C5.52256 4.00019 5.74561 3.97372 5.94669 3.88497H6.00002C6.1972 3.80047 6.36536 3.66014 6.48382 3.48128C6.60227 3.30242 6.66583 3.09283 6.66669 2.87831V2.76497C6.66669 2.41135 6.80716 2.07221 7.05721 1.82216C7.30726 1.57212 7.6464 1.43164 8.00002 1.43164C8.35364 1.43164 8.69278 1.57212 8.94283 1.82216C9.19288 2.07221 9.33335 2.41135 9.33335 2.76497V2.82497C9.33421 3.0395 9.39777 3.24909 9.51622 3.42795C9.63468 3.60681 9.80284 3.74713 10 3.83164C10.2011 3.92038 10.4241 3.94686 10.6404 3.90764C10.8567 3.86843 11.0562 3.76533 11.2134 3.61164L11.2534 3.57164C11.3772 3.44767 11.5242 3.34933 11.6861 3.28223C11.848 3.21513 12.0215 3.18059 12.1967 3.18059C12.3719 3.18059 12.5454 3.21513 12.7073 3.28223C12.8691 3.34933 13.0162 3.44767 13.14 3.57164C13.264 3.69547 13.3623 3.84252 13.4294 4.00439C13.4965 4.16625 13.5311 4.33975 13.5311 4.51497C13.5311 4.69019 13.4965 4.8637 13.4294 5.02556C13.3623 5.18742 13.264 5.33448 13.14 5.45831L13.1 5.49831C12.9463 5.65543 12.8432 5.85498 12.804 6.07125C12.7648 6.28751 12.7913 6.51056 12.88 6.71164V6.76497C12.9645 6.96215 13.1048 7.13032 13.2837 7.24877C13.4626 7.36722 13.6722 7.43078 13.8867 7.43164H14C14.3536 7.43164 14.6928 7.57212 14.9428 7.82216C15.1929 8.07221 15.3334 8.41135 15.3334 8.76497C15.3334 9.1186 15.1929 9.45773 14.9428 9.70778C14.6928 9.95783 14.3536 10.0983 14 10.0983H13.94C13.7255 10.0992 13.5159 10.1627 13.337 10.2812C13.1582 10.3996 13.0179 10.5678 12.9334 10.765Z"
-                  stroke="#476B64"
-                  stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-              <svg
-                style="display: none"
-                title="Light Mode"
-                class="theme-btn light"
-                id="selected"
-                width="16"
-                height="16"
-                viewBox="0 0 16 17"
-                fill="none"
-                class="dark-mode">
-                <path
-                  d="M8.00002 1.43164V2.76497M8.00002 14.765V16.0983M2.81335 3.57831L3.76002 4.52497M12.24 13.005L13.1867 13.9516M0.666687 8.76497H2.00002M14 8.76497H15.3334M2.81335 13.9516L3.76002 13.005M12.24 4.52497L13.1867 3.57831M11.3334 8.76497C11.3334 10.6059 9.84097 12.0983 8.00002 12.0983C6.15907 12.0983 4.66669 10.6059 4.66669 8.76497C4.66669 6.92402 6.15907 5.43164 8.00002 5.43164C9.84097 5.43164 11.3334 6.92402 11.3334 8.76497Z"
-                  stroke="#476B64"
-                  stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-              <svg
-                style="display: none"
-                title="Dark Mode"
-                class="theme-btn dark"
-                width="16"
-                height="16"
-                viewBox="0 0 14 14"
-                fill="none"
-                class="dark-mode">
-                <path
-                  d="M13 7.2918C12.8951 8.42661 12.4692 9.50807 11.7722 10.4097C11.0751 11.3113 10.1357 11.9957 9.0638 12.3828C7.99194 12.77 6.83199 12.8439 5.71966 12.5959C4.60734 12.3478 3.58866 11.7882 2.78281 10.9823C1.97697 10.1765 1.41729 9.15779 1.16927 8.04547C0.921246 6.93315 0.995139 5.77319 1.3823 4.70133C1.76946 3.62948 2.45388 2.69005 3.35547 1.99297C4.25706 1.2959 5.33853 0.870007 6.47333 0.765137C5.80894 1.66398 5.48923 2.77144 5.57235 3.88608C5.65547 5.00072 6.1359 6.04851 6.92626 6.83887C7.71662 7.62923 8.76441 8.10966 9.87905 8.19278C10.9937 8.2759 12.1012 7.9562 13 7.2918Z"
-                  stroke="#476B64"
-                  stroke-linecap="round"
-                  stroke-linejoin="round" />
-              </svg>
-            </div>
-            <p><a href="#cta" class="cta-btn">Start Converting</a></p>
-          </div>
-        </li>
-      </ul>
-    </nav>
-
-    <!-- MOBILE + TABLET NAVIGATION-->
-    <nav class="bottom-nav fade-in-up" id="hide-pc">
-      <ul>
-        <li>
-          <p>
-            <a href="#home" class="nav-btn"
-              ><img src="img/home.svg" loading="lazy" alt="Home icon" />Home</a
-            >
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#about" class="nav-btn"
-              ><img
-                src="img/about.svg"
-                loading="lazy"
-                alt="About icon" />About</a
-            >
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#coverage" class="nav-btn"
-              ><img
-                src="img/coverage.svg"
-                loading="lazy"
-                alt="Coverage icon" />Coverage</a
-            >
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#features" class="nav-btn"
-              ><img
-                src="img/features.svg"
-                loading="lazy"
-                alt="Features icon" />Features</a
-            >
-          </p>
-        </li>
-        <li>
-          <p>
-            <a href="#faq" class="nav-btn"
-              ><img src="img/faq.svg" loading="lazy" alt="FAQ icon" />FAQ</a
-            >
-          </p>
-        </li>
-      </ul>
-    </nav>
-
-    <main>
-      <div id="zone">
-        <section id="home">
-          <div class="first fade-in-up">
-            <h1>
-              Convert Prices <span class="highlight">Instantly</span> While You
-              Browse
-            </h1>
-            <p>
-              See a price you don't recognize? We'll show you the value in your
-              own currency. No math, no switching tabs. Just clear pricing at
-              your fingertips.
-            </p>
-            <div class="cta">
-              <p><a href="#about" class="learn-more">Learn More</a></p>
-              <p><a href="#cta" class="cta-btn">Start Converting</a></p>
-            </div>
-            <small>No sign-up required.</small>
-          </div>
-          <img
-            src="img/Shape-light.png"
-            class="shape"
-            loading="lazy"
-            alt="Decorative shape"
-            width="200"
-            height="200" />
-          <div
-            class="second fade-in-up delay-1"
-            style="min-height: 500px; background: #f5f5f5">
-            <div
-              class="globe-loading"
-              style="
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                height: 100%;
-              ">
-              <div class="spinner"></div>
-            </div>
-          </div>
-        </section>
-
-        <section id="brands" class="fade-in-up">
-          <h5 class="brands-title">Trusted on Your Favorite Sites:</h5>
-          <div class="logo-carousel">
-            <div class="logo-track">
-              <!-- Original Set -->
-              <img
-                src="/img/brand 1.svg"
-                class="brand-logo"
-                loading="lazy"
-                alt="Brand logo"
-                width="120"
-                height="40" />
-              <img
-                src="/img/brand 2.svg"
-                class="brand-logo"
-                loading="lazy"
-                alt="Brand logo"
-                width="120"
-                height="40" />
-              <img
-                src="/img/brand 3.svg"
-                class="brand-logo"
-                loading="lazy"
-                alt="Brand logo"
-                width="120"
-                height="40" />
-              <img
-                src="/img/brand 4.svg"
-                class="brand-logo"
-                loading="lazy"
-                alt="Brand logo"
-                width="120"
-                height="40" />
-              <img
-                src="/img/brand 5.svg"
-                class="brand-logo"
-                loading="lazy"
-                alt="Brand logo"
-                width="120"
-                height="40" />
-              <img
-                src="/img/brand 6.svg"
-                class="brand-logo"
-                loading="lazy"
-                alt="Brand logo"
-                width="120"
-                height="40" />
-
-              <!-- Duplicated Set (for seamless looping) -->
-              <img
-                src="/img/brand 1.svg"
-                class="brand-logo"
-                loading="lazy"
-                alt="Brand logo"
-                width="120"
-                height="40" />
-              <img
-                src="/img/brand 2.svg"
-                class="brand-logo"
-                loading="lazy"
-                alt="Brand logo"
-                width="120"
-                height="40" />
-              <img
-                src="/img/brand 3.svg"
-                class="brand-logo"
-                loading="lazy"
-                alt="Brand logo"
-                width="120"
-                height="40" />
-              <img
-                src="/img/brand 4.svg"
-                class="brand-logo"
-                loading="lazy"
-                alt="Brand logo"
-                width="120"
-                height="40" />
-              <img
-                src="/img/brand 5.svg"
-                class="brand-logo"
-                loading="lazy"
-                alt="Brand logo"
-                width="120"
-                height="40" />
-              <img
-                src="/img/brand 6.svg"
-                class="brand-logo"
-                loading="lazy"
-                alt="Brand logo"
-                width="120"
-                height="40" />
-            </div>
-          </div>
-        </section>
-
-        <!-- Rest of your content remains the same but with:
-         1. loading="lazy" on all images
-         2. width and height attributes on all images
-         3. proper alt text for all images
-         4. SVG optimization as shown above
-      --></div>
-    </main>
-
-    <!-- All scripts moved to bottom with defer -->
     <script>
       window.va =
         window.va ||
@@ -398,18 +26,8 @@
       src="https://web-currency-converter.vercel.app/_vercel/speed-insights/script.js"
       defer></script>
     <script src="js/darkMode.js" defer></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"
-      defer></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"
-      defer></script>
-    <script src="js/globe.js" defer></script>
-    <script src="js/marquee.js" defer></script>
-    <script src="js/animations.js" defer></script>
-    <script src="js/pagination.js" defer></script>
-    <script src="js/navbar.js" defer></script>
-
+  </head>
+  <body>
     <!-- Lazy loading handler -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
@@ -439,5 +57,762 @@
         }
       });
     </script>
+    <style>
+      [loading="lazy"] {
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+      [loading="lazy"].loaded {
+        opacity: 1;
+      }
+    </style>
+    <!-- LAPTOP + DESKTOP NAVIGATION-->
+    <nav class="top-nav fade-in-down" id="navbar">
+      <ul>
+        <li>
+          <a href="#home" class="logo">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="35"
+              height="41"
+              viewBox="0 0 35 41"
+              fill="none"
+              class="dark-mode">
+              <path
+                fill-rule="evenodd"
+                clip-rule="evenodd"
+                d="M21.4656 0.917824L32.1126 3.48542C34.1325 3.96471 35.3991 6.01878 34.8856 8.03863L29.3054 31.3182C28.8261 33.338 26.8062 34.6047 24.7864 34.1254L19.1719 32.756L18.0764 37.275C17.5971 39.2948 15.5773 40.5615 13.5574 40.0822L2.91048 37.5146C0.856398 37.0354 -0.376049 34.9813 0.103236 32.9614L5.68348 9.68189C6.16276 7.66205 8.21684 6.39536 10.2367 6.87465L15.8512 8.24403L16.9124 3.72506C17.3917 1.70522 19.4458 0.43854 21.4656 0.917824ZM19.1719 32.756L19.8566 29.983C19.8794 29.9146 19.8908 29.8461 19.8908 29.7776L23.8278 13.3108C24.2386 11.6333 23.2116 9.99 21.5683 9.57918L18.8296 8.92873C18.7839 8.92873 18.7497 8.91731 18.7269 8.89449L15.8512 8.2098L15.2007 10.8801C15.2007 10.9029 15.2007 10.9143 15.2007 10.9143C15.1551 11.0056 15.1208 11.1083 15.098 11.2224L11.161 27.6893C10.7844 29.3326 11.8115 31.0101 13.4547 31.3866L16.1935 32.0371L19.1719 32.756Z"
+                fill="url(#paint0_linear_81_210)"></path>
+              <defs>
+                <linearGradient
+                  id="paint0_linear_81_210"
+                  x1="6.10148"
+                  y1="33.8341"
+                  x2="35.8196"
+                  y2="1.09416"
+                  gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#245547"></stop>
+                  <stop offset="1" stop-color="#00D4AA"></stop>
+                </linearGradient>
+              </defs>
+            </svg>
+            <p>Currency<br />Converter</p>
+          </a>
+        </li>
+        <li id="hide-phone">
+          <div class="nav-links">
+            <p><a href="#home">Home</a></p>
+            <p><a href="#about">About</a></p>
+            <p><a href="#coverage">Coverage</a></p>
+            <p><a href="#features">Features</a></p>
+            <p><a href="#faq">FAQ</a></p>
+            <p><a href="#contact">Contact</a></p>
+          </div>
+        </li>
+        <li>
+          <div class="buttons">
+            <!-- <p>
+              <a
+                href="https://github.com/Ziedyahia-57/Currency-Converter"
+                class="github-btn"
+                id="hide-phone"
+                ><svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                  fill="#000000"
+                  height="24px"
+                  width="24px"
+                  version="1.1"
+                  id="Capa_1"
+                  viewBox="0 0 217.929 217.929"
+                  xml:space="preserve"
+                  class="dark-mode">
+                  <g>
+                    <path
+                      d="M212.39,101.703c5.023-4.897,6.797-12.083,4.629-18.755s-7.827-11.443-14.769-12.452l-52.969-7.697   c-0.097-0.014-0.18-0.075-0.223-0.162L125.371,14.64C122.267,8.349,115.98,4.44,108.964,4.44S95.662,8.349,92.558,14.64   L68.87,62.637c-0.043,0.087-0.126,0.147-0.223,0.162l-52.968,7.697c-6.942,1.009-12.601,5.78-14.769,12.452   s-0.394,13.858,4.629,18.755l38.328,37.361c0.07,0.068,0.102,0.166,0.085,0.262l-9.048,52.755   c-1.186,6.914,1.604,13.771,7.279,17.894c5.676,4.125,13.059,4.657,19.268,1.393l47.376-24.907c0.086-0.046,0.19-0.045,0.276,0   l47.376,24.907c2.701,1.42,5.623,2.121,8.531,2.121c3.777,0,7.53-1.184,10.736-3.514c5.675-4.123,8.464-10.98,7.279-17.895   l-9.048-52.754c-0.017-0.096,0.016-0.194,0.085-0.262L212.39,101.703z M156.235,142.368l9.048,52.754   c0.024,0.14,0.031,0.182-0.118,0.29c-0.149,0.108-0.187,0.088-0.312,0.022l-47.377-24.908c-5.33-2.801-11.695-2.801-17.027,0   l-47.376,24.907c-0.125,0.065-0.163,0.086-0.312-0.022c-0.149-0.108-0.142-0.15-0.118-0.289l9.048-52.755   c1.018-5.936-0.949-11.989-5.262-16.194L18.103,88.813c-0.101-0.099-0.132-0.128-0.075-0.303c0.057-0.175,0.099-0.181,0.239-0.202   l52.968-7.697c5.961-0.866,11.111-4.607,13.776-10.008l23.688-47.998c0.063-0.126,0.081-0.165,0.265-0.165s0.203,0.039,0.265,0.165   l23.688,47.998c2.666,5.401,7.815,9.143,13.776,10.008l52.968,7.697c0.14,0.021,0.182,0.027,0.239,0.202   c0.057,0.175,0.026,0.205-0.075,0.303l-38.328,37.361C157.185,130.378,155.218,136.432,156.235,142.368z"></path>
+                  </g>
+                </svg>
+                Star on Github
+              </a>
+            </p> -->
+            <div class="theme">
+              <svg
+                style="display: none"
+                title="System Default"
+                class="theme-btn auto"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 17"
+                fill="none"
+                class="dark-mode">
+                <path
+                  d="M8.00002 10.765C9.10459 10.765 10 9.86954 10 8.76497C10 7.6604 9.10459 6.76497 8.00002 6.76497C6.89545 6.76497 6.00002 7.6604 6.00002 8.76497C6.00002 9.86954 6.89545 10.765 8.00002 10.765Z"
+                  stroke="#476B64"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+                <path
+                  d="M12.9334 10.765C12.8446 10.9661 12.8181 11.1891 12.8573 11.4054C12.8966 11.6216 12.9997 11.8212 13.1534 11.9783L13.1934 12.0183C13.3173 12.1421 13.4157 12.2892 13.4828 12.4511C13.5499 12.6129 13.5844 12.7864 13.5844 12.9616C13.5844 13.1369 13.5499 13.3104 13.4828 13.4722C13.4157 13.6341 13.3173 13.7811 13.1934 13.905C13.0695 14.0289 12.9225 14.1273 12.7606 14.1944C12.5987 14.2615 12.4252 14.296 12.25 14.296C12.0748 14.296 11.9013 14.2615 11.7394 14.1944C11.5776 14.1273 11.4305 14.0289 11.3067 13.905L11.2667 13.865C11.1096 13.7113 10.91 13.6082 10.6937 13.569C10.4775 13.5298 10.2544 13.5562 10.0534 13.645C9.85617 13.7295 9.68801 13.8698 9.56956 14.0487C9.45111 14.2275 9.38754 14.4371 9.38669 14.6516V14.765C9.38669 15.1186 9.24621 15.4577 8.99616 15.7078C8.74611 15.9578 8.40698 16.0983 8.05335 16.0983C7.69973 16.0983 7.36059 15.9578 7.11054 15.7078C6.8605 15.4577 6.72002 15.1186 6.72002 14.765V14.705C6.71486 14.4843 6.64343 14.2703 6.51503 14.0908C6.38662 13.9112 6.20718 13.7745 6.00002 13.6983C5.79894 13.6096 5.57589 13.5831 5.35963 13.6223C5.14336 13.6615 4.94381 13.7646 4.78669 13.9183L4.74669 13.9583C4.62286 14.0823 4.4758 14.1806 4.31394 14.2477C4.15208 14.3148 3.97857 14.3494 3.80335 14.3494C3.62813 14.3494 3.45463 14.3148 3.29277 14.2477C3.1309 14.1806 2.98385 14.0823 2.86002 13.9583C2.73605 13.8345 2.63771 13.6874 2.57061 13.5256C2.50351 13.3637 2.46897 13.1902 2.46897 13.015C2.46897 12.8398 2.50351 12.6663 2.57061 12.5044C2.63771 12.3425 2.73605 12.1955 2.86002 12.0716L2.90002 12.0316C3.05371 11.8745 3.15681 11.675 3.19602 11.4587C3.23524 11.2424 3.20876 11.0194 3.12002 10.8183C3.03551 10.6211 2.89519 10.453 2.71633 10.3345C2.53747 10.2161 2.32788 10.1525 2.11335 10.1516H2.00002C1.6464 10.1516 1.30726 10.0112 1.05721 9.76112C0.807163 9.51107 0.666687 9.17193 0.666687 8.81831C0.666687 8.46468 0.807163 8.12555 1.05721 7.8755C1.30726 7.62545 1.6464 7.48497 2.00002 7.48497H2.06002C2.28068 7.47981 2.49469 7.40839 2.67422 7.27998C2.85375 7.15158 2.9905 6.97213 3.06669 6.76497C3.15543 6.5639 3.1819 6.34084 3.14269 6.12458C3.10348 5.90832 3.00038 5.70876 2.84669 5.55164L2.80669 5.51164C2.68272 5.38781 2.58437 5.24076 2.51727 5.07889C2.45017 4.91703 2.41564 4.74353 2.41564 4.56831C2.41564 4.39309 2.45017 4.21958 2.51727 4.05772C2.58437 3.89586 2.68272 3.7488 2.80669 3.62497C2.93052 3.50101 3.07757 3.40266 3.23943 3.33556C3.4013 3.26846 3.5748 3.23392 3.75002 3.23392C3.92524 3.23392 4.09874 3.26846 4.26061 3.33556C4.42247 3.40266 4.56952 3.50101 4.69335 3.62497L4.73335 3.66497C4.89047 3.81866 5.09003 3.92176 5.30629 3.96098C5.52256 4.00019 5.74561 3.97372 5.94669 3.88497H6.00002C6.1972 3.80047 6.36536 3.66014 6.48382 3.48128C6.60227 3.30242 6.66583 3.09283 6.66669 2.87831V2.76497C6.66669 2.41135 6.80716 2.07221 7.05721 1.82216C7.30726 1.57212 7.6464 1.43164 8.00002 1.43164C8.35364 1.43164 8.69278 1.57212 8.94283 1.82216C9.19288 2.07221 9.33335 2.41135 9.33335 2.76497V2.82497C9.33421 3.0395 9.39777 3.24909 9.51622 3.42795C9.63468 3.60681 9.80284 3.74713 10 3.83164C10.2011 3.92038 10.4241 3.94686 10.6404 3.90764C10.8567 3.86843 11.0562 3.76533 11.2134 3.61164L11.2534 3.57164C11.3772 3.44767 11.5242 3.34933 11.6861 3.28223C11.848 3.21513 12.0215 3.18059 12.1967 3.18059C12.3719 3.18059 12.5454 3.21513 12.7073 3.28223C12.8691 3.34933 13.0162 3.44767 13.14 3.57164C13.264 3.69547 13.3623 3.84252 13.4294 4.00439C13.4965 4.16625 13.5311 4.33975 13.5311 4.51497C13.5311 4.69019 13.4965 4.8637 13.4294 5.02556C13.3623 5.18742 13.264 5.33448 13.14 5.45831L13.1 5.49831C12.9463 5.65543 12.8432 5.85498 12.804 6.07125C12.7648 6.28751 12.7913 6.51056 12.88 6.71164V6.76497C12.9645 6.96215 13.1048 7.13032 13.2837 7.24877C13.4626 7.36722 13.6722 7.43078 13.8867 7.43164H14C14.3536 7.43164 14.6928 7.57212 14.9428 7.82216C15.1929 8.07221 15.3334 8.41135 15.3334 8.76497C15.3334 9.1186 15.1929 9.45773 14.9428 9.70778C14.6928 9.95783 14.3536 10.0983 14 10.0983H13.94C13.7255 10.0992 13.5159 10.1627 13.337 10.2812C13.1582 10.3996 13.0179 10.5678 12.9334 10.765Z"
+                  stroke="#476B64"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <svg
+                style="display: none"
+                title="Light Mode"
+                class="theme-btn light"
+                id="selected"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 16 17"
+                fill="none"
+                class="dark-mode">
+                <path
+                  d="M8.00002 1.43164V2.76497M8.00002 14.765V16.0983M2.81335 3.57831L3.76002 4.52497M12.24 13.005L13.1867 13.9516M0.666687 8.76497H2.00002M14 8.76497H15.3334M2.81335 13.9516L3.76002 13.005M12.24 4.52497L13.1867 3.57831M11.3334 8.76497C11.3334 10.6059 9.84097 12.0983 8.00002 12.0983C6.15907 12.0983 4.66669 10.6059 4.66669 8.76497C4.66669 6.92402 6.15907 5.43164 8.00002 5.43164C9.84097 5.43164 11.3334 6.92402 11.3334 8.76497Z"
+                  stroke="#476B64"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              <svg
+                style="display: none"
+                title="Dark Mode"
+                class="theme-btn dark"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 14 14"
+                fill="none"
+                class="dark-mode">
+                <path
+                  d="M13 7.2918C12.8951 8.42661 12.4692 9.50807 11.7722 10.4097C11.0751 11.3113 10.1357 11.9957 9.0638 12.3828C7.99194 12.77 6.83199 12.8439 5.71966 12.5959C4.60734 12.3478 3.58866 11.7882 2.78281 10.9823C1.97697 10.1765 1.41729 9.15779 1.16927 8.04547C0.921246 6.93315 0.995139 5.77319 1.3823 4.70133C1.76946 3.62948 2.45388 2.69005 3.35547 1.99297C4.25706 1.2959 5.33853 0.870007 6.47333 0.765137C5.80894 1.66398 5.48923 2.77144 5.57235 3.88608C5.65547 5.00072 6.1359 6.04851 6.92626 6.83887C7.71662 7.62923 8.76441 8.10966 9.87905 8.19278C10.9937 8.2759 12.1012 7.9562 13 7.2918Z"
+                  stroke="#476B64"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+            </div>
+            <p><a href="#cta" class="cta-btn">Start Converting</a></p>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <!-- MOBILE + TABLET NAVIGATION-->
+    <nav class="bottom-nav fade-in-up" id="hide-pc">
+      <ul>
+        <li>
+          <p>
+            <a href="#home" class="nav-btn"
+              ><img loading="lazy" src="img/home.svg" />Home</a
+            >
+          </p>
+        </li>
+        <li>
+          <p>
+            <a href="#about" class="nav-btn"
+              ><img loading="lazy" src="img/about.svg" />About</a
+            >
+          </p>
+        </li>
+        <li>
+          <p>
+            <a href="#coverage" class="nav-btn"
+              ><img loading="lazy" src="img/coverage.svg" />Coverage</a
+            >
+          </p>
+        </li>
+        <li>
+          <p>
+            <a href="#features" class="nav-btn"
+              ><img loading="lazy" src="img/features.svg" />Features</a
+            >
+          </p>
+        </li>
+        <li>
+          <p>
+            <a href="#faq" class="nav-btn"
+              ><img loading="lazy" src="img/faq.svg" />FAQ</a
+            >
+          </p>
+        </li>
+      </ul>
+    </nav>
+
+    <main>
+      <div id="zone">
+        <section id="home">
+          <div class="first fade-in-up">
+            <h1>
+              Convert Prices <span class="highlight">Instantly</span> While You
+              Browse
+            </h1>
+            <p>
+              See a price you don’t recognize? We’ll show you the value in your
+              own currency. No math, no switching tabs. Just clear pricing at
+              your fingertips.
+            </p>
+            <div class="cta">
+              <p><a href="#about" class="learn-more">Learn More</a></p>
+              <p><a href="#cta" class="cta-btn">Start Converting</a></p>
+            </div>
+
+            <small>No sign-up required.</small>
+          </div>
+          <img loading="lazy" src="img/Shape-light.png" class="shape" />
+          <div class="second fade-in-up delay-1"></div>
+          <script
+            src="https://cdn.jsdelivr.net/npm/three@0.132.2/build/three.min.js"
+            defer></script>
+          <script
+            src="https://cdn.jsdelivr.net/npm/three@0.132.2/examples/js/controls/OrbitControls.js"
+            defer></script>
+          <script src="js/globe.js" defer></script>
+        </section>
+
+        <section id="brands" class="fade-in-up">
+          <h5 class="brands-title">Trusted on Your Favorite Sites:</h5>
+          <div class="logo-carousel">
+            <div class="logo-track">
+              <!-- Original Set -->
+              <img loading="lazy" src="/img/brand 1.svg" class="brand-logo" />
+              <img loading="lazy" src="/img/brand 2.svg" class="brand-logo" />
+              <img loading="lazy" src="/img/brand 3.svg" class="brand-logo" />
+              <img loading="lazy" src="/img/brand 4.svg" class="brand-logo" />
+              <img loading="lazy" src="/img/brand 5.svg" class="brand-logo" />
+              <img loading="lazy" src="/img/brand 6.svg" class="brand-logo" />
+
+              <!-- Duplicated Set (for seamless looping) -->
+              <img loading="lazy" src="/img/brand 1.svg" class="brand-logo" />
+              <img loading="lazy" src="/img/brand 2.svg" class="brand-logo" />
+              <img loading="lazy" src="/img/brand 3.svg" class="brand-logo" />
+              <img loading="lazy" src="/img/brand 4.svg" class="brand-logo" />
+              <img loading="lazy" src="/img/brand 5.svg" class="brand-logo" />
+              <img loading="lazy" src="/img/brand 6.svg" class="brand-logo" />
+            </div>
+          </div>
+        </section>
+        <section id="about">
+          <div class="first fade-in-left delay-1">
+            <img
+              loading="lazy"
+              src="img/app.png"
+              alt="Currency Converter Interface" />
+          </div>
+          <div class="second fade-in-right delay-2">
+            <h2>
+              Built For Real-Life Browsing. Designed for real-world currencies.
+            </h2>
+            <p>
+              Whether you're browsing international stores, reviewing freelance
+              rates, or comparing travel deals, it gives you instant, accurate
+              conversions with zero friction.<br /><br />Built to be
+              <span class="highlight">Fast</span>,
+              <span class="highlight">Private</span> &
+              <span class="highlight">Open</span>.
+            </p>
+            <a href="#cta" class="cta-btn">Start Converting</a>
+          </div>
+        </section>
+        <section id="coverage" class="fade-in-up">
+          <h2 class="fade-in-up">Global Coverage You Can Count On</h2>
+          <p class="desc fade-in-up">
+            From single-currency nations to those with multiple official
+            currencies, our extension handles it all with precision.
+          </p>
+          <div class="map fade-in-up delay-1">
+            <img loading="lazy" src="img/Colored map.svg" />
+          </div>
+          <div class="legend">
+            <div class="row">
+              <div class="box1"></div>
+              <p class="label">Multi-Currency</p>
+            </div>
+            <div class="row">
+              <div class="box2"></div>
+              <p class="label">Single Currency</p>
+            </div>
+            <div class="row">
+              <div class="box3"></div>
+              <p class="label">Unsupported Currency</p>
+            </div>
+          </div>
+          <small class="italic">
+            Coverage is based on supported currencies, not just countries.
+          </small>
+        </section>
+        <section id="features">
+          <div class="first fade-in-left">
+            <img loading="lazy" src="img/icon outline 3.png" class="outline" />
+            <h2>Everything you need. Nothing you don’t.</h2>
+            <p>
+              Designed to make your online shopping and browsing effortless.
+            </p>
+            <a href="#cta" class="cta-btn">Start Converting</a>
+          </div>
+          <div class="second fade-in-right">
+            <div class="card-grid">
+              <!-- Page 1 -->
+              <div class="card-group active" data-page="1">
+                <div class="card">
+                  <div class="icon">
+                    <img loading="lazy" src="img/sparkle.svg" />
+                  </div>
+                  <h4>Smart Detection</h4>
+                  <p>Select any price and get a live, accurate conversion.</p>
+                </div>
+                <div class="card">
+                  <div class="icon">
+                    <img loading="lazy" src="img/time.svg" />
+                  </div>
+                  <h4>Live Exchange Rates</h4>
+                  <p>
+                    Stay up to date with accurate exchange rates. Prices update
+                    as you browse.
+                  </p>
+                </div>
+                <div class="card">
+                  <div class="icon">
+                    <img loading="lazy" src="img/globe.svg" />
+                  </div>
+                  <h4>150+ Currencies</h4>
+                  <p>Convert prices from virtually any global currency.</p>
+                </div>
+                <div class="card">
+                  <div class="icon">
+                    <img loading="lazy" src="img/lock.svg" />
+                  </div>
+                  <h4>Privacy First</h4>
+                  <p>
+                    Your data stays on your device. No tracking, no accounts, no
+                    setup.
+                  </p>
+                </div>
+
+                <div class="card" id="hide-pc-flex">
+                  <div class="icon">
+                    <img loading="lazy" src="img/opensource.svg" />
+                  </div>
+                  <h4>Open-Source</h4>
+                  <p>
+                    The code is publicly available, offering full transparency.
+                  </p>
+                </div>
+                <div class="card" id="hide-pc-flex">
+                  <div class="icon">
+                    <img loading="lazy" src="img/custom.svg" />
+                  </div>
+                  <h4>Precision Control</h4>
+                  <p>
+                    Customize number format, date/time display, decimal
+                    precision, and more.
+                  </p>
+                </div>
+                <div class="card" id="hide-pc-flex">
+                  <div class="icon">
+                    <img loading="lazy" src="img/bulk.svg" />
+                  </div>
+                  <h4>Bulk Conversion</h4>
+                  <p>
+                    Convert one currency into multiple currencies all at once.
+                  </p>
+                </div>
+                <div class="card" id="hide-pc-flex">
+                  <div class="icon">
+                    <img loading="lazy" src="img/tax.svg" />
+                  </div>
+                  <h4>Tax Calculation</h4>
+                  <p>
+                    Optionally include tax rates for accurate financial
+                    planning.
+                  </p>
+                </div>
+                <div class="card" id="hide-pc-flex">
+                  <div class="icon">
+                    <img loading="lazy" src="img/offline.svg" />
+                  </div>
+                  <h4>Offline Support</h4>
+                  <p>
+                    Cached exchange rates keep conversions available anytime.
+                  </p>
+                </div>
+                <div class="card" id="hide-pc-flex">
+                  <div class="icon">
+                    <img loading="lazy" src="img/access.svg" />
+                  </div>
+                  <h4>Keyboard-Friendly</h4>
+                  <p>
+                    Navigate the extension effortlessly using just your
+                    keyboard.
+                  </p>
+                </div>
+                <div class="card" id="hide-pc-flex">
+                  <div class="icon">
+                    <img
+                      loading="lazy"
+                      src="img/dark.svg"
+                      style="transform: scaleX(-1)" />
+                  </div>
+                  <h4>Dark Mode</h4>
+                  <p>
+                    Switch between light and dark themes, or use system
+                    preferences.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Page 2 -->
+              <div class="card-group" data-page="2">
+                <div class="card">
+                  <div class="icon">
+                    <img loading="lazy" src="img/opensource.svg" />
+                  </div>
+                  <h4>Open-Source</h4>
+                  <p>
+                    The code is publicly available, offering full transparency.
+                  </p>
+                </div>
+                <div class="card">
+                  <div class="icon">
+                    <img loading="lazy" src="img/custom.svg" />
+                  </div>
+                  <h4>Precision Control</h4>
+                  <p>
+                    Customize number format, date/time display, decimal
+                    precision, and more.
+                  </p>
+                </div>
+                <div class="card">
+                  <div class="icon">
+                    <img loading="lazy" src="img/bulk.svg" />
+                  </div>
+                  <h4>Bulk Conversion</h4>
+                  <p>
+                    Convert one currency into multiple currencies all at once.
+                  </p>
+                </div>
+                <div class="card">
+                  <div class="icon">
+                    <img loading="lazy" src="img/tax.svg" />
+                  </div>
+                  <h4>Tax Calculation</h4>
+                  <p>
+                    Optionally include tax rates for accurate financial
+                    planning.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Page 3 -->
+              <div class="card-group" data-page="3">
+                <div class="card">
+                  <div class="icon">
+                    <img loading="lazy" src="img/offline.svg" />
+                  </div>
+                  <h4>Offline Support</h4>
+                  <p>
+                    Cached exchange rates keep conversions available anytime.
+                  </p>
+                </div>
+                <div class="card">
+                  <div class="icon">
+                    <img loading="lazy" src="img/access.svg" />
+                  </div>
+                  <h4>Keyboard-Friendly</h4>
+                  <p>
+                    Navigate the extension effortlessly using just your
+                    keyboard.
+                  </p>
+                </div>
+                <div class="card">
+                  <div class="icon">
+                    <img
+                      loading="lazy"
+                      src="img/dark.svg"
+                      style="transform: scaleX(-1)" />
+                  </div>
+                  <h4>Dark Mode</h4>
+                  <p>
+                    Switch between light and dark themes, or use system
+                    preferences.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pagination" id="hide-phone-flex">
+              <button class="arrow prev">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#000000"
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 96 96"
+                  class="dark-mode">
+                  <path
+                    d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
+                </svg>
+              </button>
+              <div class="dots">
+                <span class="dot active" data-page="1"></span>
+                <span class="dot" data-page="2"></span>
+                <span class="dot" data-page="3"></span>
+              </div>
+              <button class="arrow next">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="#000000"
+                  width="24px"
+                  height="24px"
+                  viewBox="0 0 96 96"
+                  class="dark-mode">
+                  <path
+                    d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section id="cta">
+        <div class="content">
+          <img
+            loading="lazy"
+            src="img/Shape-light.png"
+            class="white-icon top-left" />
+          <img
+            loading="lazy"
+            src="img/Shape-light.png"
+            class="white-icon top-right" />
+          <img
+            loading="lazy"
+            src="img/Shape-light.png"
+            class="white-icon bottom-left" />
+          <img
+            loading="lazy"
+            src="img/Shape-light.png"
+            class="white-icon bottom-right" />
+          <h2 class="fade-in-up">
+            Know the Price.<br />Right Where You See It.
+          </h2>
+          <p class="fade-in-up">
+            Your time is valuable, so is your money.<br />Install the extension
+            and convert currencies instantly, right where you are.
+          </p>
+          <p>
+            <a href="#cta" class="cta-btn fade-in-up delay-2"
+              >Start Converting</a
+            >
+          </p>
+
+          <p>
+            <a
+              href="https://github.com/Ziedyahia-57/Currency-Converter"
+              class="github-btn fade-in-up delay-2"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                fill="#000000"
+                height="24px"
+                width="24px"
+                version="1.1"
+                id="Capa_1"
+                viewBox="0 0 217.929 217.929"
+                xml:space="preserve"
+                class="dark-mode">
+                <g>
+                  <path
+                    d="M212.39,101.703c5.023-4.897,6.797-12.083,4.629-18.755s-7.827-11.443-14.769-12.452l-52.969-7.697   c-0.097-0.014-0.18-0.075-0.223-0.162L125.371,14.64C122.267,8.349,115.98,4.44,108.964,4.44S95.662,8.349,92.558,14.64   L68.87,62.637c-0.043,0.087-0.126,0.147-0.223,0.162l-52.968,7.697c-6.942,1.009-12.601,5.78-14.769,12.452   s-0.394,13.858,4.629,18.755l38.328,37.361c0.07,0.068,0.102,0.166,0.085,0.262l-9.048,52.755   c-1.186,6.914,1.604,13.771,7.279,17.894c5.676,4.125,13.059,4.657,19.268,1.393l47.376-24.907c0.086-0.046,0.19-0.045,0.276,0   l47.376,24.907c2.701,1.42,5.623,2.121,8.531,2.121c3.777,0,7.53-1.184,10.736-3.514c5.675-4.123,8.464-10.98,7.279-17.895   l-9.048-52.754c-0.017-0.096,0.016-0.194,0.085-0.262L212.39,101.703z M156.235,142.368l9.048,52.754   c0.024,0.14,0.031,0.182-0.118,0.29c-0.149,0.108-0.187,0.088-0.312,0.022l-47.377-24.908c-5.33-2.801-11.695-2.801-17.027,0   l-47.376,24.907c-0.125,0.065-0.163,0.086-0.312-0.022c-0.149-0.108-0.142-0.15-0.118-0.289l9.048-52.755   c1.018-5.936-0.949-11.989-5.262-16.194L18.103,88.813c-0.101-0.099-0.132-0.128-0.075-0.303c0.057-0.175,0.099-0.181,0.239-0.202   l52.968-7.697c5.961-0.866,11.111-4.607,13.776-10.008l23.688-47.998c0.063-0.126,0.081-0.165,0.265-0.165s0.203,0.039,0.265,0.165   l23.688,47.998c2.666,5.401,7.815,9.143,13.776,10.008l52.968,7.697c0.14,0.021,0.182,0.027,0.239,0.202   c0.057,0.175,0.026,0.205-0.075,0.303l-38.328,37.361C157.185,130.378,155.218,136.432,156.235,142.368z"></path>
+                </g>
+              </svg>
+              Star on Github
+            </a>
+          </p>
+        </div>
+      </section>
+
+      <div id="zone">
+        <section id="faq">
+          <div class="first fade-in-left">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-card fade-in-down delay-2">
+              <h4>have more questions?</h4>
+              <p>
+                If you don’t see the answer you’re looking for, send us an
+                email. We’re here to help and will get back to you as soon as
+                possible!
+              </p>
+              <p>
+                <a
+                  href="mailto:ziedyahia20102012@gmail.com?subject=[Currency Converter]:"
+                  class="contact-btn"
+                  >Contact Us!</a
+                >
+              </p>
+            </div>
+          </div>
+
+          <div class="second fade-in-right">
+            <details class="question">
+              <summary>
+                <h5>01.</h5>
+                <h5>What makes this extension different?</h5>
+                <svg class="arrow-icon"><use href="#arrow-icon" /></svg>
+              </summary>
+              <p>
+                It combines a suite of highly-requested features including smart
+                format recognition, Convert-on-Select, in-page conversion,
+                customizable formatting, and more.
+              </p>
+            </details>
+
+            <details class="question">
+              <summary>
+                <h5>02.</h5>
+                <h5>Can it convert in-page currencies?</h5>
+                <svg class="arrow-icon"><use href="#arrow-icon" /></svg>
+              </summary>
+              <p>
+                Yes, in-page conversion is available in settings. When enabled,
+                the extension automatically detects and converts prices as the
+                page loads. If disabled, you can still convert any value by
+                simply selecting it.
+              </p>
+            </details>
+
+            <details class="question">
+              <summary>
+                <h5>03.</h5>
+                <h5>Can I change how prices appear?</h5>
+                <svg class="arrow-icon"><use href="#arrow-icon" /></svg>
+              </summary>
+              <p>
+                You can choose the number format that fits your region or
+                preference, including options for decimal and thousands
+                separators. This ensures converted prices are always easy to
+                read and consistent with your expectations.
+              </p>
+            </details>
+
+            <details class="question">
+              <summary>
+                <h5>04.</h5>
+                <h5>Will it slow down my browser?</h5>
+                <svg class="arrow-icon"><use href="#arrow-icon" /></svg>
+              </summary>
+              <p>
+                Not at all. While the extension is around 8 MB due to its
+                feature-rich design, it’s carefully optimized to run efficiently
+                and is continuously improved with each update for smooth
+                performance.
+              </p>
+            </details>
+
+            <details class="question">
+              <summary>
+                <h5>05.</h5>
+                <h5>Will I have to pay to use this extension?</h5>
+                <svg class="arrow-icon"><use href="#arrow-icon" /></svg>
+              </summary>
+              <p>
+                No, the extension is completely free, with no sign-ups,
+                subscriptions, or hidden fees. If you find it valuable, you’re
+                welcome to support it with an optional donation, it's entirely
+                up to you and it's greatly appreciated!
+              </p>
+            </details>
+          </div>
+        </section>
+      </div>
+      <footer id="contact" class="fade-in-up">
+        <div class="wrapper">
+          <div class="container">
+            <a href="#home" class="logo">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="35"
+                height="41"
+                viewBox="0 0 35 41"
+                fill="none"
+                class="dark-mode">
+                <path
+                  fill-rule="evenodd"
+                  clip-rule="evenodd"
+                  d="M21.4656 0.917824L32.1126 3.48542C34.1325 3.96471 35.3991 6.01878 34.8856 8.03863L29.3054 31.3182C28.8261 33.338 26.8062 34.6047 24.7864 34.1254L19.1719 32.756L18.0764 37.275C17.5971 39.2948 15.5773 40.5615 13.5574 40.0822L2.91048 37.5146C0.856398 37.0354 -0.376049 34.9813 0.103236 32.9614L5.68348 9.68189C6.16276 7.66205 8.21684 6.39536 10.2367 6.87465L15.8512 8.24403L16.9124 3.72506C17.3917 1.70522 19.4458 0.43854 21.4656 0.917824ZM19.1719 32.756L19.8566 29.983C19.8794 29.9146 19.8908 29.8461 19.8908 29.7776L23.8278 13.3108C24.2386 11.6333 23.2116 9.99 21.5683 9.57918L18.8296 8.92873C18.7839 8.92873 18.7497 8.91731 18.7269 8.89449L15.8512 8.2098L15.2007 10.8801C15.2007 10.9029 15.2007 10.9143 15.2007 10.9143C15.1551 11.0056 15.1208 11.1083 15.098 11.2224L11.161 27.6893C10.7844 29.3326 11.8115 31.0101 13.4547 31.3866L16.1935 32.0371L19.1719 32.756Z"
+                  fill="url(#paint0_linear_81_210)" />
+                <defs>
+                  <linearGradient
+                    id="paint0_linear_81_210"
+                    x1="6.10148"
+                    y1="33.8341"
+                    x2="35.8196"
+                    y2="1.09416"
+                    gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#245547" />
+                    <stop offset="1" stop-color="#00D4AA" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <p>Currency<br />Converter</p>
+            </a>
+            <div class="contact">
+              <div class="method">
+                <p>Email:</p>
+                <a
+                  href="mailto:ziedyahia20102012@gmail.com?subject=[Currency Converter]:"
+                  class="contact-link">
+                  <h6>ziedyahia20102012@gmail.com</h6>
+                </a>
+              </div>
+
+              <div class="method">
+                <p>Github:</p>
+                <a
+                  href="https://github.com/Ziedyahia-57/Currency-Converter"
+                  class="contact-link">
+                  <h6>Ziedyahia-57</h6>
+                </a>
+              </div>
+            </div>
+            <div class="right">
+              <h4>Shop Globally with Confidence. Built for Professionals.</h4>
+              <a href="#cta" class="cta-btn">Start Converting</a>
+            </div>
+          </div>
+          <hr />
+          <div class="sources">
+            <div class="availability">
+              <img loading="lazy" src="img/checkmark.svg" class="checkmark" />
+              <h6>Available on:</h6>
+            </div>
+            <div class="source-links">
+              <div class="group">
+                <a
+                  href="https://github.com/Ziedyahia-57/Currency-Converter"
+                  class="source-btn"
+                  title="Github"
+                  ><img loading="lazy" src="img/github.svg" />Github</a
+                >
+                <a href="#" class="source-btn disabled" title="Available Soon"
+                  ><img loading="lazy" src="img/firefox.svg" />Mozilla</a
+                >
+              </div>
+
+              <div class="group">
+                <a href="#" class="source-btn disabled" title="Available Soon"
+                  ><img loading="lazy" src="img/chrome.svg" />Chrome</a
+                >
+                <a href="#" class="source-btn disabled" title="Available Soon"
+                  ><img loading="lazy" src="img/safari.svg" />Safari</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </main>
   </body>
+  <script src="js/marquee.js" defer></script>
+  <script src="js/animations.js" defer></script>
+  <script src="js/pagination.js" defer></script>
+  <script src="js/navbar.js" defer></script>
 </html>
