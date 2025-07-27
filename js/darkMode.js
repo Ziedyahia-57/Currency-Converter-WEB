@@ -64,7 +64,7 @@ const ThemeManager = {
       this.applyTheme(this.currentTheme);
     }
 
-    this.updateThemeButtonVisibility();
+    this.updateThemeButtonVisibility(false); // No animation on initial load
   },
 
   // Set and save the theme
@@ -81,19 +81,44 @@ const ThemeManager = {
       this.applyTheme(theme);
     }
 
-    this.updateThemeButtonVisibility();
+    this.updateThemeButtonVisibility(true); // With animation
   },
 
-  // Update which theme button is visible
-  updateThemeButtonVisibility() {
-    // Hide all buttons first
-    Object.values(this.themeButtons).forEach((btn) => {
-      btn.style.display = "none";
-    });
+  // Update which theme button is visible with optional animation
+  updateThemeButtonVisibility(animate = true) {
+    const buttons = Object.values(this.themeButtons);
 
-    // Show only the current theme button
-    if (this.themeButtons[this.currentTheme]) {
-      this.themeButtons[this.currentTheme].style.display = "block";
+    if (animate) {
+      // Fade out all buttons first
+      buttons.forEach((btn) => {
+        btn.classList.add("hidden");
+      });
+
+      // After fade out completes, switch visibility and fade in the current button
+      setTimeout(() => {
+        // Hide all buttons
+        buttons.forEach((btn) => {
+          btn.style.display = "none";
+        });
+
+        // Show and fade in the current theme button
+        if (this.themeButtons[this.currentTheme]) {
+          this.themeButtons[this.currentTheme].style.display = "block";
+          // Trigger reflow to ensure transition works
+          void this.themeButtons[this.currentTheme].offsetWidth;
+          this.themeButtons[this.currentTheme].classList.remove("hidden");
+        }
+      }, 300); // Match this timeout with CSS transition duration
+    } else {
+      // No animation - immediate change
+      buttons.forEach((btn) => {
+        btn.style.display = "none";
+        btn.classList.remove("hidden");
+      });
+
+      if (this.themeButtons[this.currentTheme]) {
+        this.themeButtons[this.currentTheme].style.display = "block";
+      }
     }
   },
 
@@ -114,7 +139,7 @@ const ThemeManager = {
     // Update shape images
     this.updateShapeImages(isDark);
 
-    //Update app image
+    // Update app image
     const appImage = document.querySelector(".first.fade-in-left.delay-1 img");
     if (appImage) {
       appImage.src = isDark
