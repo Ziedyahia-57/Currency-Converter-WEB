@@ -143,8 +143,8 @@ const ThemeManager = {
     const appImage = document.querySelector(".first.fade-in-left.delay-1 img");
     if (appImage) {
       appImage.src = isDark
-        ? appImage.src.replace("app.png", "app-dark.png")
-        : appImage.src.replace("app-dark.png", "app.png");
+        ? appImage.src.replace("app.webp", "app-dark.webp")
+        : appImage.src.replace("app-dark.webp", "app.webp");
     }
   },
 
@@ -157,23 +157,23 @@ const ThemeManager = {
       if (img.classList.contains("white-icon")) {
         // Handle white-icon special case
         if (shouldApply) {
-          img.src = currentSrc.includes("Shape-light.png")
-            ? currentSrc.replace("Shape-light.png", "Shape-primary.png")
+          img.src = currentSrc.includes("Shape-light.webp")
+            ? currentSrc.replace("Shape-light.webp", "Shape-primary.webp")
             : currentSrc;
         } else {
-          img.src = currentSrc.includes("Shape-primary.png")
-            ? currentSrc.replace("Shape-primary.png", "Shape-light.png")
+          img.src = currentSrc.includes("Shape-primary.webp")
+            ? currentSrc.replace("Shape-primary.webp", "Shape-light.webp")
             : currentSrc;
         }
       } else {
         // Handle regular shape images
         if (shouldApply) {
-          img.src = currentSrc.includes("Shape-light.png")
-            ? currentSrc.replace("Shape-light.png", "Shape-dark.png")
+          img.src = currentSrc.includes("Shape-light.webp")
+            ? currentSrc.replace("Shape-light.webp", "Shape-dark.webp")
             : currentSrc;
         } else {
-          img.src = currentSrc.includes("Shape-dark.png")
-            ? currentSrc.replace("Shape-dark.png", "Shape-light.png")
+          img.src = currentSrc.includes("Shape-dark.webp")
+            ? currentSrc.replace("Shape-dark.webp", "Shape-light.webp")
             : currentSrc;
         }
       }
