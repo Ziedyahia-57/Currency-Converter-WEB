@@ -4,7 +4,6 @@
     <!-- Info -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://fonts.googleapis.com/css2?family=Lato&amp;display=swap" rel="stylesheet" />
     <title>Currency Converter</title>
     <meta
       name="description"
@@ -13,6 +12,7 @@
     <!-- Files -->
     <link rel="stylesheet" href="style.css" />
     <link rel="shortcut icon" href="img/icon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css2?family=Lato&amp;display=swap" rel="stylesheet" disabled />
     <link rel="preload" as="image" href="/img/Shape-light.webp" type="image/webp" />
 
     <svg style="display: none" xmlns="http://www.w3.org/2000/svg">
@@ -21,6 +21,8 @@
           d="M69.8437,43.3876,33.8422,13.3863a6.0035,6.0035,0,0,0-7.6878,9.223l30.47,25.39-30.47,25.39a6.0035,6.0035,0,0,0,7.6878,9.2231L69.8437,52.6106a6.0091,6.0091,0,0,0,0-9.223Z" />
       </symbol>
     </svg>
+
+    <!-- Scripts -->
     <script>
       window.va =
         window.va ||
@@ -28,8 +30,8 @@
           (window.vaq = window.vaq || []).push(arguments);
         };
     </script>
-    <script src="https://web-currency-converter.vercel.app/_vercel/speed-insights/script.js"></script>
-    <script src="js/darkMode.min.js"></script>
+    <script async src="https://web-currency-converter.vercel.app/_vercel/speed-insights/script.js"></script>
+    <script defer src="js/darkMode.min.js"></script>
   </head>
   <body>
     <!-- LAPTOP + DESKTOP NAVIGATION-->
@@ -428,7 +430,7 @@
             </div>
 
             <div class="pagination" id="hide-phone-flex">
-              <button class="arrow prev">
+              <button class="arrow prev" title="Previous">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="#000000"
@@ -445,7 +447,7 @@
                 <span class="dot" data-page="2"></span>
                 <span class="dot" data-page="3"></span>
               </div>
-              <button class="arrow next">
+              <button class="arrow next" title="Next">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="#000000"
