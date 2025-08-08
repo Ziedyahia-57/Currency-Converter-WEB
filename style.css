@@ -318,11 +318,15 @@ nav.top-nav {
   stroke: var(--primary-dark);
   transition: stroke 0.3s ease;
 }
-.top-nav .theme:hover {
+.top-nav .theme:hover,
+.arrow:hover {
   background: var(--primary-dark);
 }
 .top-nav .theme:hover .theme-btn path {
   stroke: #fff;
+}
+button.arrow:hover svg {
+  fill: white;
 }
 .theme-btn.hidden {
   opacity: 0;
@@ -714,11 +718,11 @@ section#brands {
   rotate: 180deg;
 }
 
-.arrow:hover,
+/* .arrow:hover,
 .arrow:hover svg {
   border-color: var(--primary);
   fill: var(--primary);
-}
+} */
 
 .dots {
   display: flex;
