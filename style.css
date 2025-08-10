@@ -834,7 +834,7 @@ section#faq > * {
   flex-direction: column;
   gap: 16px;
   align-self: flex-start;
-  width: -webkit-fill-available;
+  width: 100%;
 }
 .faq-card {
   background: rgba(56, 228, 199, 0.25);
