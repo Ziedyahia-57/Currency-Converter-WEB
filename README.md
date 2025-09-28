@@ -6,12 +6,6 @@ A browser extension for bulk currency conversion.
 # Description
 This browser extension allows you to convert any chosen currency to multiple other currencies simultaneously, saving you time when you need exchange rates for several currencies at once.
 
-# Contributions
-Contributions to this project are welcome. Feel free to open issues and submit pull requests.
-<br/>
-<br/>***Want to add a feature? contact: ziedyahia20102012@gmail.com***
-<br/>***Found a bug? [Submit an issue](https://github.com/Ziedyahia-57/Currency-Converter/issues/new)***
-
 # Authors
 - Ziedyahia-57 [![GitHub](https://img.shields.io/badge/-GitHub-black?style=flat&logo=github)](https://github.com/Ziedyahia-57) [![LinkedIn](https://img.shields.io/badge/-LinkedIn-blue?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/zied-yahia/)
 
