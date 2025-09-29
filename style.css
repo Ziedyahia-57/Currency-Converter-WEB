@@ -5,12 +5,12 @@
   --dark-1: #ffffff;
   --dark-2: #f4faf9;
   --dark-3: #deedea;
-  --light-1: #17362d;
+  --light-1: #01281d;
   --light-2: #2d534b;
-  --light-3: #476b64;
-  --accent-1: #171d20;
-  --accent-2: #1b2226;
-  --accent-3: #1b2425;
+  --light-3: #182e2a;
+  --accent-1: #010d10;
+  --accent-2: #01080a;
+  --accent-3: #09181c;
 
   --H1-mobile: 42px;
   --H2-mobile: 35px;
@@ -38,11 +38,11 @@
   --light-1: #ffffff;
   --light-2: #f4faf9;
   --light-3: #deedea;
-  --dark-1: #17362d;
+  --dark-1: #01281d;
   --dark-2: #2d534b;
-  --dark-3: #476b64;
-  --accent-1: #171d20;
-  --accent-2: #1b2226;
+  --dark-3: #182e2a;
+  --accent-1: #010d10;
+  --accent-2: #01080a;
   --accent-3: #293236;
 
   --H1-mobile: 42px;
@@ -945,6 +945,10 @@ footer h4 {
 }
 footer .contact h6 {
   text-decoration: underline;
+  transition: color 0.3s ease-out;
+}
+footer .contact h6:hover {
+  color: var(--primary);
 }
 footer hr {
   height: 3px;
