@@ -1,7 +1,8 @@
 # [WEB] Currency Converter (Beta)
 A browser extension for bulk currency conversion.
 
-<img width="720" height="720" alt="undefined_turn_card_background" src="https://github.com/user-attachments/assets/dd1aa50c-ecf8-4889-bb71-f29f0724e0a7" />
+<img height="506" alt="image (4)" src="https://github.com/user-attachments/assets/86c1aa3a-1eae-4266-a057-1b88115fef5b" />
+<img width="815" alt="undefined_turn_card_background" src="https://github.com/user-attachments/assets/dd1aa50c-ecf8-4889-bb71-f29f0724e0a7" />
 
 # Description
 This browser extension allows you to convert any chosen currency to multiple other currencies simultaneously, saving you time when you need exchange rates for several currencies at once.
