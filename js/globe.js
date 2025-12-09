@@ -50,7 +50,7 @@ const loadSvgTexture = () => {
       texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
       resolve(texture);
     };
-    img.src = "img/map-final.svg";
+    img.src = "img/world hexagon mercator.png";
   });
 };
 
@@ -104,10 +104,7 @@ loadSvgTexture()
     });
 
     // Create globe with initial rotation
-    const globe = new THREE.Mesh(
-      new THREE.SphereGeometry(0.85, 128, 128),
-      gradientMaterial
-    );
+    const globe = new THREE.Mesh(new THREE.SphereGeometry(0.85, 128, 128), gradientMaterial);
     globe.rotation.y = -120 * (Math.PI / 180);
     scene.add(globe);
 
