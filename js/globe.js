@@ -50,7 +50,8 @@ const loadSvgTexture = () => {
       texture.anisotropy = renderer.capabilities.getMaxAnisotropy();
       resolve(texture);
     };
-    img.src = "img/world hexagon mercator.png";
+    // img.src = "img/world hexagon mercator.png";
+    img.src = "img/map-final.svg";
   });
 };
 
@@ -116,7 +117,7 @@ loadSvgTexture()
         transparent: true,
         opacity: 0.15,
         side: THREE.BackSide,
-      })
+      }),
     );
     scene.add(rimGlow);
 
