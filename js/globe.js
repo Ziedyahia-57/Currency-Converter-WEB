@@ -142,11 +142,6 @@ loadSvgTexture()
     controls.maxDistance = 1.75;
     controls.minDistance = 1.75;
 
-    // Double-click detection variables
-    let clickCount = 0;
-    let clickTimer = null;
-    const DOUBLE_CLICK_DELAY = 300; // milliseconds
-
     // Function to update rotation enable state based on screen width
     const updateRotationEnableState = () => {
       if (isMobileView()) {
@@ -159,32 +154,161 @@ loadSvgTexture()
     // Initial state
     updateRotationEnableState();
 
-    // Handle double-click for mobile view
-    canvas.addEventListener("click", (event) => {
-      if (!isMobileView()) return; // Only apply double-click behavior on mobile
+    // Drag handling for mobile view
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let dragStartTime = 0;
+    let hasVerticalMovement = false;
 
-      clickCount++;
-      
-      if (clickCount === 1) {
-        // First click - start timer
-        clickTimer = setTimeout(() => {
-          clickCount = 0;
-        }, DOUBLE_CLICK_DELAY);
-      } else if (clickCount === 2) {
-        // Double click detected
-        clearTimeout(clickTimer);
-        clickCount = 0;
-        
-        // Toggle rotation enable state
-        controls.enableRotate = true;
+    // Function to check if movement is more vertical than horizontal
+    const isVerticalMovement = (currentX, currentY) => {
+      const deltaX = Math.abs(currentX - dragStartX);
+      const deltaY = Math.abs(currentY - dragStartY);
+      return deltaY > deltaX * 1.5; // More vertical than horizontal
+    };
+
+    canvas.addEventListener("mousedown", (e) => {
+      if (!isMobileView()) {
+        // Desktop behavior
+        canvas.style.cursor = "grabbing";
         controls.autoRotate = false;
+        return;
+      }
+
+      // Mobile behavior - start drag detection
+      isDragging = false;
+      hasVerticalMovement = false;
+      dragStartX = e.clientX;
+      dragStartY = e.clientY;
+      dragStartTime = Date.now();
+    });
+
+    canvas.addEventListener("mousemove", (e) => {
+      if (!isMobileView()) return;
+
+      // Don't prevent default if we haven't started dragging yet
+      if (!isDragging) {
+        // Check if this is a drag (movement threshold exceeded)
+        if (Math.abs(e.clientX - dragStartX) > 5 || Math.abs(e.clientY - dragStartY) > 5) {
+          // Check if movement is primarily vertical
+          if (isVerticalMovement(e.clientX, e.clientY)) {
+            // This is likely a scroll attempt - let it pass through
+            hasVerticalMovement = true;
+            return;
+          }
+          
+          // This is a horizontal or diagonal drag - enable globe rotation
+          isDragging = true;
+          
+          // Prevent page scroll only when we're sure it's a drag
+          e.preventDefault();
+          
+          // Enable rotation temporarily
+          controls.enableRotate = true;
+          controls.autoRotate = false;
+        }
+      } else {
+        // Already dragging - continue preventing scroll
+        e.preventDefault();
+      }
+    });
+
+    canvas.addEventListener("mouseup", (e) => {
+      if (!isMobileView()) {
+        // Desktop behavior
+        canvas.style.cursor = "grab";
+        controls.autoRotate = true;
+        return;
+      }
+
+      // Mobile behavior - reset if we were dragging
+      if (isDragging) {
+        e.preventDefault();
         
-        // Reset after a delay
+        // Disable rotation after a short delay
         setTimeout(() => {
           controls.enableRotate = false;
           controls.autoRotate = true;
-        }, 2000); // Allow rotation for 2 seconds after double-click
+        }, 100);
       }
+      
+      isDragging = false;
+      hasVerticalMovement = false;
+    });
+
+    canvas.addEventListener("mouseleave", () => {
+      if (!isMobileView()) {
+        canvas.style.cursor = "grab";
+        controls.autoRotate = true;
+        return;
+      }
+
+      // Mobile behavior - reset drag state
+      if (isDragging) {
+        controls.enableRotate = false;
+        controls.autoRotate = true;
+      }
+      isDragging = false;
+      hasVerticalMovement = false;
+    });
+
+    // Touch events for mobile
+    canvas.addEventListener("touchstart", (e) => {
+      if (isMobileView()) {
+        isDragging = false;
+        hasVerticalMovement = false;
+        dragStartX = e.touches[0].clientX;
+        dragStartY = e.touches[0].clientY;
+        dragStartTime = Date.now();
+      }
+    }, { passive: true }); // Start with passive true to allow scrolling
+
+    canvas.addEventListener("touchmove", (e) => {
+      if (!isMobileView()) return;
+
+      // Don't prevent default if we haven't started dragging yet
+      if (!isDragging) {
+        // Check if this is a drag (movement threshold exceeded)
+        if (Math.abs(e.touches[0].clientX - dragStartX) > 5 || Math.abs(e.touches[0].clientY - dragStartY) > 5) {
+          // Check if movement is primarily vertical
+          if (isVerticalMovement(e.touches[0].clientX, e.touches[0].clientY)) {
+            // This is likely a scroll attempt - let it pass through
+            hasVerticalMovement = true;
+            return;
+          }
+          
+          // This is a horizontal or diagonal drag - enable globe rotation
+          isDragging = true;
+          
+          // Now we need to prevent default to stop scrolling
+          e.preventDefault();
+          
+          // Enable rotation temporarily
+          controls.enableRotate = true;
+          controls.autoRotate = false;
+        }
+      } else {
+        // Already dragging - continue preventing scroll
+        e.preventDefault();
+      }
+    }, { passive: false }); // Switch to passive: false only when we need to prevent default
+
+    canvas.addEventListener("touchend", (e) => {
+      if (!isMobileView()) return;
+
+      if (isDragging) {
+        e.preventDefault();
+        
+        // Disable rotation after a short delay
+        setTimeout(() => {
+          controls.enableRotate = false;
+          controls.autoRotate = true;
+        }, 100);
+      }
+      
+      isDragging = false;
+      hasVerticalMovement = false;
     });
 
     // Animation loop
@@ -213,35 +337,10 @@ loadSvgTexture()
 
     // Cursor interaction
     const updateCursor = () => {
-      if (isMobileView()) {
-        canvas.style.cursor = "default";
-      } else {
-        canvas.style.cursor = "grab";
-      }
+      canvas.style.cursor = "grab";
     };
     
     updateCursor();
-
-    canvas.addEventListener("mousedown", () => {
-      if (!isMobileView()) {
-        canvas.style.cursor = "grabbing";
-        controls.autoRotate = false;
-      }
-    });
-
-    canvas.addEventListener("mouseup", () => {
-      if (!isMobileView()) {
-        canvas.style.cursor = "grab";
-        controls.autoRotate = true;
-      }
-    });
-
-    canvas.addEventListener("mouseleave", () => {
-      if (!isMobileView()) {
-        canvas.style.cursor = "grab";
-        controls.autoRotate = true;
-      }
-    });
 
     // Also update cursor on window resize
     window.addEventListener('resize', updateCursor);
