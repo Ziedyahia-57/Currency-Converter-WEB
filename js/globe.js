@@ -149,10 +149,47 @@ loadSvgTexture()
     animate();
 
     // Helper to update touch action styles
+    let isGlobeActive = false;
     const updateTouchSettings = () => {
-      canvas.style.touchAction = window.innerWidth < 1020 ? 'pan-y' : 'none';
+      if (window.innerWidth < 1020) {
+        canvas.style.touchAction = isGlobeActive ? 'none' : 'pan-y';
+      } else {
+        canvas.style.touchAction = 'none';
+      }
     };
     updateTouchSettings();
+
+    // Require first tap to interact on small screens, otherwise scroll
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    canvas.addEventListener('pointerdown', (e) => {
+      if (e.pointerType === 'touch' && window.innerWidth < 1020) {
+        if (!isGlobeActive) {
+          touchStartX = e.clientX;
+          touchStartY = e.clientY;
+          e.stopPropagation(); // Stop OrbitControls to allow native scrolling
+        }
+      }
+    }, { capture: true });
+
+    canvas.addEventListener('pointerup', (e) => {
+      if (e.pointerType === 'touch' && window.innerWidth < 1020 && !isGlobeActive) {
+        const diffX = Math.abs(e.clientX - touchStartX);
+        const diffY = Math.abs(e.clientY - touchStartY);
+        if (diffX < 10 && diffY < 10) {
+          isGlobeActive = true;
+          updateTouchSettings();
+        }
+      }
+    });
+
+    document.addEventListener('pointerdown', (e) => {
+      if (isGlobeActive && e.target !== canvas && window.innerWidth < 1020) {
+        isGlobeActive = false;
+        updateTouchSettings();
+      }
+    });
 
     // Handle container resize
     const resizeObserver = new ResizeObserver(() => {
