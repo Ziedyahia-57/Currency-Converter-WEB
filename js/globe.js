@@ -172,7 +172,7 @@ loadSvgTexture()
       deactivationTimeout = setTimeout(() => {
         isGlobeActive = false;
         updateGlobeState();
-      }, 500);
+      }, 250);
     };
 
     // Use capture: true so this runs BEFORE OrbitControls' own listeners
