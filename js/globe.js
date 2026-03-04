@@ -55,6 +55,9 @@ const loadSvgTexture = () => {
   });
 };
 
+// Check if screen width is less than 1020px
+const isMobileView = () => window.innerWidth < 1020;
+
 // Main creation function
 loadSvgTexture()
   .then((texture) => {
@@ -124,13 +127,13 @@ loadSvgTexture()
     // Lighting
     scene.add(new THREE.AmbientLight(0xffffff, 0.3));
 
-    // Slower Controls Configuration
+    // Controls Configuration
     const controls = new THREE.OrbitControls(camera, canvas);
     controls.enableDamping = true;
-    controls.dampingFactor = 0.05; // Increased for slower deceleration
-    controls.rotateSpeed = 0.4; // Reduced from 0.8 for slower manual rotation
+    controls.dampingFactor = 0.05;
+    controls.rotateSpeed = 0.4;
     controls.autoRotate = true;
-    controls.autoRotateSpeed = 0.5; // Reduced from 1.0 for slower auto-rotation
+    controls.autoRotateSpeed = 0.5;
     controls.enableZoom = false;
     controls.enablePan = false;
     controls.minPolarAngle = Math.PI / 6;
@@ -138,6 +141,51 @@ loadSvgTexture()
     controls.screenSpacePanning = false;
     controls.maxDistance = 1.75;
     controls.minDistance = 1.75;
+
+    // Double-click detection variables
+    let clickCount = 0;
+    let clickTimer = null;
+    const DOUBLE_CLICK_DELAY = 300; // milliseconds
+
+    // Function to update rotation enable state based on screen width
+    const updateRotationEnableState = () => {
+      if (isMobileView()) {
+        controls.enableRotate = false; // Disable normal rotation for mobile
+      } else {
+        controls.enableRotate = true; // Enable normal rotation for desktop
+      }
+    };
+
+    // Initial state
+    updateRotationEnableState();
+
+    // Handle double-click for mobile view
+    canvas.addEventListener("click", (event) => {
+      if (!isMobileView()) return; // Only apply double-click behavior on mobile
+
+      clickCount++;
+      
+      if (clickCount === 1) {
+        // First click - start timer
+        clickTimer = setTimeout(() => {
+          clickCount = 0;
+        }, DOUBLE_CLICK_DELAY);
+      } else if (clickCount === 2) {
+        // Double click detected
+        clearTimeout(clickTimer);
+        clickCount = 0;
+        
+        // Toggle rotation enable state
+        controls.enableRotate = true;
+        controls.autoRotate = false;
+        
+        // Reset after a delay
+        setTimeout(() => {
+          controls.enableRotate = false;
+          controls.autoRotate = true;
+        }, 2000); // Allow rotation for 2 seconds after double-click
+      }
+    });
 
     // Animation loop
     const animate = () => {
@@ -154,26 +202,50 @@ loadSvgTexture()
       renderer.setSize(newWidth, newHeight);
       camera.aspect = newWidth / newHeight;
       camera.updateProjectionMatrix();
+      
+      // Update rotation state on resize
+      updateRotationEnableState();
     });
     resizeObserver.observe(container);
 
+    // Handle window resize
+    window.addEventListener('resize', updateRotationEnableState);
+
     // Cursor interaction
-    canvas.style.cursor = "grab";
+    const updateCursor = () => {
+      if (isMobileView()) {
+        canvas.style.cursor = "default";
+      } else {
+        canvas.style.cursor = "grab";
+      }
+    };
+    
+    updateCursor();
 
     canvas.addEventListener("mousedown", () => {
-      canvas.style.cursor = "grabbing";
-      controls.autoRotate = false;
+      if (!isMobileView()) {
+        canvas.style.cursor = "grabbing";
+        controls.autoRotate = false;
+      }
     });
 
     canvas.addEventListener("mouseup", () => {
-      canvas.style.cursor = "grab";
-      controls.autoRotate = true;
+      if (!isMobileView()) {
+        canvas.style.cursor = "grab";
+        controls.autoRotate = true;
+      }
     });
 
     canvas.addEventListener("mouseleave", () => {
-      canvas.style.cursor = "grab";
-      controls.autoRotate = true;
+      if (!isMobileView()) {
+        canvas.style.cursor = "grab";
+        controls.autoRotate = true;
+      }
     });
+
+    // Also update cursor on window resize
+    window.addEventListener('resize', updateCursor);
+
   })
   .catch((error) => {
     console.error("Error loading globe:", error);
