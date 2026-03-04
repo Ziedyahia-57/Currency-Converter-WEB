@@ -148,46 +148,45 @@ loadSvgTexture()
     };
     animate();
 
-    // Helper to update touch action styles
+    // Helper to update touch action styles and rotation state
     let isGlobeActive = false;
-    const updateTouchSettings = () => {
+    const updateGlobeState = () => {
       if (window.innerWidth < 1020) {
         canvas.style.touchAction = isGlobeActive ? 'none' : 'pan-y';
+        controls.enableRotate = isGlobeActive; // Disable rotation when inactive to prevent simultaneous scroll/rotate
       } else {
         canvas.style.touchAction = 'none';
+        controls.enableRotate = true;
       }
     };
-    updateTouchSettings();
+    updateGlobeState();
 
-    // Require first tap to interact on small screens, otherwise scroll
-    let touchStartX = 0;
-    let touchStartY = 0;
-
-    canvas.addEventListener('pointerdown', (e) => {
-      if (e.pointerType === 'touch' && window.innerWidth < 1020) {
-        if (!isGlobeActive) {
-          touchStartX = e.clientX;
-          touchStartY = e.clientY;
-          e.stopPropagation(); // Stop OrbitControls to allow native scrolling
-        }
-      }
-    }, { capture: true });
+    // Require double-tap/double-click to interact on small screens
+    let lastTapTime = 0;
 
     canvas.addEventListener('pointerup', (e) => {
       if (e.pointerType === 'touch' && window.innerWidth < 1020 && !isGlobeActive) {
-        const diffX = Math.abs(e.clientX - touchStartX);
-        const diffY = Math.abs(e.clientY - touchStartY);
-        if (diffX < 10 && diffY < 10) {
+        const currentTime = new Date().getTime();
+        const tapLength = currentTime - lastTapTime;
+        if (tapLength > 0 && tapLength < 500) {
           isGlobeActive = true;
-          updateTouchSettings();
+          updateGlobeState();
         }
+        lastTapTime = currentTime;
+      }
+    });
+
+    canvas.addEventListener('dblclick', (e) => {
+      if (window.innerWidth < 1020 && !isGlobeActive) {
+        isGlobeActive = true;
+        updateGlobeState();
       }
     });
 
     document.addEventListener('pointerdown', (e) => {
       if (isGlobeActive && e.target !== canvas && window.innerWidth < 1020) {
         isGlobeActive = false;
-        updateTouchSettings();
+        updateGlobeState();
       }
     });
 
@@ -198,7 +197,7 @@ loadSvgTexture()
       renderer.setSize(newWidth, newHeight);
       camera.aspect = newWidth / newHeight;
       camera.updateProjectionMatrix();
-      updateTouchSettings();
+      updateGlobeState();
     });
     resizeObserver.observe(container);
 
