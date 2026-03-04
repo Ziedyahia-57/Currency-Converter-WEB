@@ -130,13 +130,6 @@ loadSvgTexture()
     controls.dampingFactor = 0.05; // Increased for slower deceleration
     controls.rotateSpeed = 0.4; // Reduced from 0.8 for slower manual rotation
 
-    // Prevent OrbitControls from handling touch events on small screens to allow scrolling
-    canvas.addEventListener('pointerdown', (e) => {
-      if (e.pointerType === 'touch' && window.innerWidth < 1020) {
-        e.stopPropagation();
-      }
-    }, { capture: true });
-
     controls.autoRotate = true;
     controls.autoRotateSpeed = 0.5; // Reduced from 1.0 for slower auto-rotation
     controls.enableZoom = false;
