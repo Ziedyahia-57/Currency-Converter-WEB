@@ -148,46 +148,86 @@ loadSvgTexture()
     };
     animate();
 
-    // Helper to update touch action styles
+    // Helper to update touch action styles and rotation state
     let isGlobeActive = false;
-    const updateTouchSettings = () => {
-      if (window.innerWidth < 1020) {
-        canvas.style.touchAction = isGlobeActive ? 'none' : 'pan-y';
-      } else {
-        canvas.style.touchAction = 'none';
-      }
-    };
-    updateTouchSettings();
-
-    // Require first tap to interact on small screens, otherwise scroll
+    let deactivationTimeout = null;
     let touchStartX = 0;
     let touchStartY = 0;
+    let touchStartTime = 0;
+    
+    const updateGlobeState = () => {
+      if (window.innerWidth < 1020) {
+        canvas.style.touchAction = isGlobeActive ? 'none' : 'pan-y';
+        // Disable rotation when inactive to prevent simultaneous scroll/rotate for touch
+        controls.enableRotate = isGlobeActive;
+      } else {
+        canvas.style.touchAction = 'none';
+        controls.enableRotate = true;
+      }
+    };
+    updateGlobeState();
 
+    const scheduleDeactivation = () => {
+      if (deactivationTimeout) clearTimeout(deactivationTimeout);
+      deactivationTimeout = setTimeout(() => {
+        isGlobeActive = false;
+        updateGlobeState();
+      }, 500);
+    };
+
+    // Use capture: true so this runs BEFORE OrbitControls' own listeners
     canvas.addEventListener('pointerdown', (e) => {
-      if (e.pointerType === 'touch' && window.innerWidth < 1020) {
+      if (window.innerWidth < 1020) {
+        // Ensure mouse users can always interact normally
+        if (e.pointerType === 'mouse') {
+          controls.enableRotate = true;
+          return;
+        }
+
+        // It's a touch event: clear the 0.5s deactivation timer if it's running
+        if (deactivationTimeout) {
+          clearTimeout(deactivationTimeout);
+          deactivationTimeout = null;
+        }
+
         if (!isGlobeActive) {
+          // Record start of potential tap that activates the globe
           touchStartX = e.clientX;
           touchStartY = e.clientY;
-          e.stopPropagation(); // Stop OrbitControls to allow native scrolling
+          touchStartTime = new Date().getTime();
         }
       }
     }, { capture: true });
 
-    canvas.addEventListener('pointerup', (e) => {
-      if (e.pointerType === 'touch' && window.innerWidth < 1020 && !isGlobeActive) {
-        const diffX = Math.abs(e.clientX - touchStartX);
-        const diffY = Math.abs(e.clientY - touchStartY);
-        if (diffX < 10 && diffY < 10) {
-          isGlobeActive = true;
-          updateTouchSettings();
+    const handlePointerUp = (e) => {
+      if (window.innerWidth < 1020) {
+        if (e.pointerType === 'mouse') {
+           updateGlobeState(); // Return to default mobile state for next interaction
+           return;
+        }
+
+        if (!isGlobeActive) {
+          const touchDuration = new Date().getTime() - touchStartTime;
+          const diffX = Math.abs(e.clientX - touchStartX);
+          const diffY = Math.abs(e.clientY - touchStartY);
+          
+          // If the interaction was quick and didn't move much, it's a tap
+          if (touchDuration > 0 && touchDuration < 300 && diffX < 15 && diffY < 15) {
+            isGlobeActive = true;
+            updateGlobeState();
+            scheduleDeactivation(); // Give the user 500ms to touch again
+          }
+        } else {
+          // The globe was active and they just finished their interactive swipe
+          scheduleDeactivation(); // Start the 500ms countdown to deactivate
         }
       }
-    });
+    };
 
-    document.addEventListener('pointerdown', (e) => {
-      if (isGlobeActive && e.target !== canvas && window.innerWidth < 1020) {
-        isGlobeActive = false;
-        updateTouchSettings();
+    canvas.addEventListener('pointerup', handlePointerUp);
+    canvas.addEventListener('pointercancel', (e) => {
+      if (e.pointerType === 'touch' && isGlobeActive && window.innerWidth < 1020) {
+        scheduleDeactivation();
       }
     });
 
@@ -198,7 +238,7 @@ loadSvgTexture()
       renderer.setSize(newWidth, newHeight);
       camera.aspect = newWidth / newHeight;
       camera.updateProjectionMatrix();
-      updateTouchSettings();
+      updateGlobeState();
     });
     resizeObserver.observe(container);
 
